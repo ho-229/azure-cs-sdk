@@ -32,12 +32,13 @@ type RegionVoiceListResponse struct {
 	VoiceType       VoiceType `json:"VoiceType"`
 }
 
-// // supportedVoices represents the key used within the `localeToGender` map.
-// type supportedVoices struct {
-// 	Locale Locale
+// // SupportedVoices represents the key used within the `localeToGender` map.
+// type SupportedVoices struct {
+
+//  	Locale Locale
 // }
 
-type RegionVoiceMap map[Locale][]RegionVoiceListResponse
+type RegionVoiceMap map[Locale]*[]RegionVoiceListResponse
 
 func (az *AzureCSTextToSpeech) buildVoiceToRegionMap() (RegionVoiceMap, error) {
 
@@ -46,12 +47,12 @@ func (az *AzureCSTextToSpeech) buildVoiceToRegionMap() (RegionVoiceMap, error) {
 		return nil, err
 	}
 
-	m := make(map[Locale][]RegionVoiceListResponse)
+	m := make(map[Locale]*[]RegionVoiceListResponse)
 	for _, x := range v {
 		if sv, ok := m[x.Locale]; ok {
-			sv = append(sv, x)
+			*sv = append(*sv, x)
 		} else {
-			m[x.Locale] = []RegionVoiceListResponse{x}
+			m[x.Locale] = &[]RegionVoiceListResponse{x}
 		}
 	}
 	return m, err
