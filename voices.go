@@ -23,7 +23,7 @@ const (
 	voiceNeural                    // Neural
 )
 
-type regionVoiceListResponse struct {
+type RegionVoiceListResponse struct {
 	Name            string    `json:"Name"`
 	ShortName       string    `json:"ShortName"`
 	Gender          Gender    `json:"Gender"`
@@ -34,11 +34,10 @@ type regionVoiceListResponse struct {
 
 // supportedVoices represents the key used within the `localeToGender` map.
 type supportedVoices struct {
-	Gender Gender
 	Locale Locale
 }
 
-type RegionVoiceMap map[supportedVoices]string
+type RegionVoiceMap map[supportedVoices]*[]RegionVoiceListResponse
 
 func (az *AzureCSTextToSpeech) buildVoiceToRegionMap() (RegionVoiceMap, error) {
 
@@ -47,16 +46,16 @@ func (az *AzureCSTextToSpeech) buildVoiceToRegionMap() (RegionVoiceMap, error) {
 		return nil, err
 	}
 
-	m := make(map[supportedVoices]string)
+	m := make(map[supportedVoices]*[]RegionVoiceListResponse)
 	for _, x := range v {
-		if x.VoiceType == voiceNeural {
-			m[supportedVoices{Gender: x.Gender, Locale: x.Locale}] = x.ShortName
+		if sv, ok := m[supportedVoices{Locale: x.Locale}]; ok {
+			*sv = append(*sv, x)
 		}
 	}
 	return m, err
 }
 
-func (az *AzureCSTextToSpeech) fetchVoiceList() ([]regionVoiceListResponse, error) {
+func (az *AzureCSTextToSpeech) fetchVoiceList() ([]RegionVoiceListResponse, error) {
 
 	// Create a new client
 	cli := gentleman.New()
@@ -89,7 +88,7 @@ func (az *AzureCSTextToSpeech) fetchVoiceList() ([]regionVoiceListResponse, erro
 
 	switch res.StatusCode {
 	case http.StatusOK:
-		var r []regionVoiceListResponse
+		var r []RegionVoiceListResponse
 		if err := json.Unmarshal(res.Bytes(), &r); err != nil {
 			return nil, fmt.Errorf("unable to decode voice list response body, %v", err)
 		}

@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 // The following are V1 endpoints for Cognitiveservices endpoints
@@ -24,16 +26,36 @@ const tokenRefreshTimeout = time.Second * 15
 
 // TTSApiXMLPayload templates the payload required for API.
 // See: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#sample-request
+// Example:
+// <speak version='1.0' xml:lang='en-US'><voice xml:lang='en-US' xml:gender='Male'
+//    name='en-US-ChristopherNeural'>
+//        Microsoft Speech Service Text-to-Speech API
+// </voice></speak>
+
 const ttsApiXMLPayload = "<speak version='1.0' xml:lang='%s'><voice xml:lang='%s' xml:gender='%s' name='%s'>%s</voice></speak>"
+
+func (az *AzureCSTextToSpeech) GetVoicesMap() (RegionVoiceMap, error) {
+	return az.RegionVoiceMap, nil
+}
 
 // SynthesizeWithContext returns a bytestream of the rendered text-to-speech in the target audio format. `speechText` is the string of
 // text in which a user wishes to Synthesize, `region` is the language/locale, `gender` is the desired output voice
 // and `audioOutput` captures the audio format.
-func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, locale Locale, gender Gender, audioOutput AudioOutput) ([]byte, error) {
+func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, locale Locale, gender Gender, name string, vtype voiceType, audioOutput AudioOutput) ([]byte, error) {
 
-	description, ok := az.RegionVoiceMap[supportedVoices{gender, locale}]
+	vmap, ok := az.RegionVoiceMap[supportedVoices{locale}]
 	if !ok {
-		return nil, fmt.Errorf("unable to to locate RegionVoiceMap{region=%s, gender=%s} pair", locale, gender)
+		return nil, fmt.Errorf("unable to locate RegionVoiceMap{region=%s, gender=%s} pair", locale, gender)
+	}
+
+	var description string
+	for _, voice := range *vmap {
+		if voice.Name == name && voice.VoiceType == vtype && voice.Gender == gender {
+			description = voice.ShortName
+		}
+	}
+	if description == "" {
+		return nil, fmt.Errorf("unable to locate voice shortname for locale=%s, gender=%s, name=%s, voicetype=%d", locale, gender, name, vtype)
 	}
 
 	v := voiceXML(speechText, description, locale, gender)
@@ -100,10 +122,10 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 }
 
 // Synthesize directs to SynthesizeWithContext. A new context.Withtimeout is created with the timeout as defined by synthesizeActionTimeout
-func (az *AzureCSTextToSpeech) Synthesize(speechText string, locale Locale, gender Gender, audioOutput AudioOutput) ([]byte, error) {
+func (az *AzureCSTextToSpeech) Synthesize(speechText string, locale Locale, gender Gender, name string, vtype voiceType, audioOutput AudioOutput) ([]byte, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), synthesizeActionTimeout)
 	defer cancel()
-	return az.SynthesizeWithContext(ctx, speechText, locale, gender, audioOutput)
+	return az.SynthesizeWithContext(ctx, speechText, locale, gender, name, vtype, audioOutput)
 }
 
 // voiceXML renders the XML payload for the TTS api.
@@ -214,7 +236,7 @@ func New(subscriptionKey string, region Region, proxy string) (*AzureCSTextToSpe
 		return nil, fmt.Errorf("unable to fetch voice-map, %v", err)
 	}
 
-	//spew.Dump(m)
+	spew.Dump(m)
 	az.RegionVoiceMap = m
 
 	az.TokenRefreshDoneCh = az.startRefresher()
