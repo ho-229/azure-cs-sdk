@@ -49,7 +49,7 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 	}
 
 	var description string
-	for _, voice := range *vmap {
+	for _, voice := range vmap {
 		if voice.Name == name && voice.VoiceType == vtype && voice.Gender == gender {
 			description = voice.ShortName
 		}
