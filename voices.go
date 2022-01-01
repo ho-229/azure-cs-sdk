@@ -26,6 +26,7 @@ const (
 type RegionVoiceListResponse struct {
 	Name            string    `json:"Name"`
 	ShortName       string    `json:"ShortName"`
+	DisplayName     string    `json:"DisplayName"`
 	Gender          Gender    `json:"Gender"`
 	Locale          Locale    `json:"Locale"`
 	SampleRateHertz string    `json:"SampleRateHertz"`
