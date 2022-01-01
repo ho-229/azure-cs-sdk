@@ -43,7 +43,7 @@ func (az *AzureCSTextToSpeech) GetVoicesMap() (RegionVoiceMap, error) {
 // and `audioOutput` captures the audio format.
 func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, locale Locale, gender Gender, name string, vtype voiceType, audioOutput AudioOutput) ([]byte, error) {
 
-	vmap, ok := az.RegionVoiceMap[supportedVoices{locale}]
+	vmap, ok := az.RegionVoiceMap[locale]
 	if !ok {
 		return nil, fmt.Errorf("unable to locate RegionVoiceMap{region=%s, gender=%s} pair", locale, gender)
 	}
