@@ -15,12 +15,12 @@ import (
 // See: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#regions-and-endpoints
 const voiceListAPI = "https://%s.tts.speech.microsoft.com/cognitiveservices/voices/list"
 
-//go:generate enumer -type=voiceType -linecomment -json
-type voiceType int
+//go:generate enumer -type=VoiceType -linecomment -json
+type VoiceType int
 
 const (
-	voiceStandard voiceType = iota // Standard
-	voiceNeural                    // Neural
+	VoiceStandard VoiceType = iota // Standard
+	VoiceNeural                    // Neural
 )
 
 type RegionVoiceListResponse struct {
@@ -29,7 +29,7 @@ type RegionVoiceListResponse struct {
 	Gender          Gender    `json:"Gender"`
 	Locale          Locale    `json:"Locale"`
 	SampleRateHertz string    `json:"SampleRateHertz"`
-	VoiceType       voiceType `json:"VoiceType"`
+	VoiceType       VoiceType `json:"VoiceType"`
 }
 
 // // supportedVoices represents the key used within the `localeToGender` map.
