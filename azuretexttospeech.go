@@ -51,6 +51,9 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 	spew.Dump(vmap)
 
 	v := voiceXML(speechText, voicesname, vmap.Locale, vmap.Gender)
+
+	fmt.Println(v)
+
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, bytes.NewBufferString(v))
 	if err != nil {
 		return nil, err
