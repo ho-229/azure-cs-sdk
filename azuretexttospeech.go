@@ -34,6 +34,8 @@ const tokenRefreshTimeout = time.Second * 15
 
 const ttsApiXMLPayload = "<speak version='1.0' xml:lang='%s'><voice xml:lang='%s' xml:gender='%s' name='%s'>%s</voice></speak>"
 
+const ttsApiXMLPayload2 = "<speak xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xmlns:emo='http://www.w3.org/2009/10/emotionml' version='1.0' xml:lang='%s'><voice name='%s'>%s</voice></speak>"
+
 func (az *AzureCSTextToSpeech) GetVoicesMap() (RegionVoiceMap, error) {
 	return az.RegionVoiceMap, nil
 }
@@ -50,7 +52,7 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 
 	spew.Dump(vmap)
 
-	v := voiceXML(speechText, voicesname, vmap.Locale, vmap.Gender)
+	v := voiceXML(speechText, voicesname, vmap.Locale)
 
 	fmt.Println(v)
 
@@ -125,8 +127,8 @@ func (az *AzureCSTextToSpeech) Synthesize(speechText string, voicesname string, 
 
 // voiceXML renders the XML payload for the TTS api.
 // For API reference see https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#sample-request
-func voiceXML(speechText, description string, locale Locale, gender Gender) string {
-	return fmt.Sprintf(ttsApiXMLPayload, locale, locale, gender, description, speechText)
+func voiceXML(speechText, description string, locale Locale) string {
+	return fmt.Sprintf(ttsApiXMLPayload2, locale, description, speechText)
 }
 
 // refreshToken fetches an updated token from the Azure cognitive speech/text services, or an error if unable to retrive.
