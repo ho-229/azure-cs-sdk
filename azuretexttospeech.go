@@ -10,6 +10,8 @@ import (
 	"net/http"
 	"net/url"
 	"time"
+
+	"github.com/davecgh/go-spew/spew"
 )
 
 // The following are V1 endpoints for Cognitiveservices endpoints
@@ -45,6 +47,8 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 	if !ok {
 		return nil, fmt.Errorf("unable to locate RegionVoiceMap{voice.ShortName=%s}", voicesname)
 	}
+
+	spew.Dump(vmap)
 
 	v := voiceXML(speechText, voicesname, vmap.Locale, vmap.Gender)
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, bytes.NewBufferString(v))
