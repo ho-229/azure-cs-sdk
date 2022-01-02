@@ -39,24 +39,14 @@ func (az *AzureCSTextToSpeech) GetVoicesMap() (RegionVoiceMap, error) {
 // SynthesizeWithContext returns a bytestream of the rendered text-to-speech in the target audio format. `speechText` is the string of
 // text in which a user wishes to Synthesize, `region` is the language/locale, `gender` is the desired output voice
 // and `audioOutput` captures the audio format.
-func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, locale Locale, gender Gender, name string, vtype VoiceType, audioOutput AudioOutput) ([]byte, error) {
+func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, voicesname string, audioOutput AudioOutput) ([]byte, error) {
 
-	vmap, ok := az.RegionVoiceMap[locale]
+	vmap, ok := az.RegionVoiceMap[voicesname]
 	if !ok {
-		return nil, fmt.Errorf("unable to locate RegionVoiceMap{region=%s, gender=%s} pair", locale, gender)
+		return nil, fmt.Errorf("unable to locate RegionVoiceMap{voice.ShortName=%s}", voicesname)
 	}
 
-	var description string
-	for _, voice := range *vmap {
-		if voice.Name == name && voice.VoiceType == vtype && voice.Gender == gender {
-			description = voice.ShortName
-		}
-	}
-	if description == "" {
-		return nil, fmt.Errorf("unable to locate voice shortname for locale=%s, gender=%s, name=%s, voicetype=%d", locale, gender, name, vtype)
-	}
-
-	v := voiceXML(speechText, description, locale, gender)
+	v := voiceXML(speechText, voicesname, vmap.Locale, vmap.Gender)
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, bytes.NewBufferString(v))
 	if err != nil {
 		return nil, err
@@ -120,10 +110,10 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 }
 
 // Synthesize directs to SynthesizeWithContext. A new context.Withtimeout is created with the timeout as defined by synthesizeActionTimeout
-func (az *AzureCSTextToSpeech) Synthesize(speechText string, locale Locale, gender Gender, name string, vtype VoiceType, audioOutput AudioOutput) ([]byte, error) {
+func (az *AzureCSTextToSpeech) Synthesize(speechText string, voicesname string, audioOutput AudioOutput) ([]byte, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), synthesizeActionTimeout)
 	defer cancel()
-	return az.SynthesizeWithContext(ctx, speechText, locale, gender, name, vtype, audioOutput)
+	return az.SynthesizeWithContext(ctx, speechText, voicesname, audioOutput)
 }
 
 // voiceXML renders the XML payload for the TTS api.
