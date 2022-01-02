@@ -52,7 +52,7 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 
 	spew.Dump(vmap)
 
-	v := voiceXML(speechText, voicesname, vmap.Locale)
+	v := voiceXML(speechText, voicesname, vmap.Locale, vmap.Gender)
 
 	fmt.Println(v)
 
@@ -127,8 +127,8 @@ func (az *AzureCSTextToSpeech) Synthesize(speechText string, voicesname string, 
 
 // voiceXML renders the XML payload for the TTS api.
 // For API reference see https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#sample-request
-func voiceXML(speechText, description string, locale Locale) string {
-	return fmt.Sprintf(ttsApiXMLPayload2, locale, description, speechText)
+func voiceXML(speechText, description string, locale Locale, gender Gender) string {
+	return fmt.Sprintf(ttsApiXMLPayload, locale, locale, gender, description, speechText)
 }
 
 // refreshToken fetches an updated token from the Azure cognitive speech/text services, or an error if unable to retrive.
