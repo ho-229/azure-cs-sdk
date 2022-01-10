@@ -262,6 +262,7 @@ const (
 	LocalezuZA                // zu-ZA
 	LocaleknIN                // kn-IN
 	LocaleloLA                // lo-LA
+	LocalemkMK                // mk-MK
 )
 
 // Region references the locations of the availability of standard voices.
