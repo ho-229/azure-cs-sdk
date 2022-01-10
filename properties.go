@@ -217,6 +217,7 @@ const (
 	LocalehrHR                // hr-HR
 	LocalehuHU                // hu-HU
 	LocaleidID                // id-ID
+	LocaleisIS                // is-IS
 	LocaleitIT                // it-IT
 	LocalejaJP                // ja-JP
 	LocalejvID                // jv-ID
