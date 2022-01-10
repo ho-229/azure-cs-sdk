@@ -260,6 +260,7 @@ const (
 	LocalezhHK                // zh-HK
 	LocalezhTW                // zh-TW
 	LocalezuZA                // zu-ZA
+	LocaleknIN                // kn-IN
 )
 
 // Region references the locations of the availability of standard voices.

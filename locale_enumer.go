@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _LocaleName = "af-ZAam-ETar-AEar-BHar-DZar-EGar-IQar-JOar-KWar-LYar-MAar-QAar-SAar-SYar-TNar-YEbg-BGbn-BDbn-INca-EScs-CZcy-GBda-DKde-ATde-CHde-DEel-GRen-AUen-CAen-GBen-HKen-IEen-INen-KEen-NGen-NZen-PHen-SGen-TZen-USen-ZAes-ARes-BOes-CLes-COes-CRes-CUes-DOes-ECes-ESes-GQes-GTes-HNes-MXes-NIes-PAes-PEes-PRes-PYes-SVes-USes-UYes-VEet-EEfa-IRfi-FIfil-PHfr-BEfr-CAfr-CHfr-FRga-IEgl-ESgu-INhe-ILhi-INhr-HRhu-HUid-IDis-ISit-ITja-JPjv-IDkm-KHko-KRlt-LTlv-LVmr-INms-MYmt-MTmy-MMnb-NOnl-BEkk-KZnl-NLpl-PLpt-BRpt-PTro-ROru-RUsk-SKsl-SIso-SOsu-IDsv-SEsw-KEsw-TZta-INta-LKta-SGte-INth-THtr-TRuk-UAur-INur-PKuz-UZvi-VNzh-CNzh-HKzh-TWzu-ZA"
+const _LocaleName = "af-ZAam-ETar-AEar-BHar-DZar-EGar-IQar-JOar-KWar-LYar-MAar-QAar-SAar-SYar-TNar-YEbg-BGbn-BDbn-INca-EScs-CZcy-GBda-DKde-ATde-CHde-DEel-GRen-AUen-CAen-GBen-HKen-IEen-INen-KEen-NGen-NZen-PHen-SGen-TZen-USen-ZAes-ARes-BOes-CLes-COes-CRes-CUes-DOes-ECes-ESes-GQes-GTes-HNes-MXes-NIes-PAes-PEes-PRes-PYes-SVes-USes-UYes-VEet-EEfa-IRfi-FIfil-PHfr-BEfr-CAfr-CHfr-FRga-IEgl-ESgu-INhe-ILhi-INhr-HRhu-HUid-IDis-ISit-ITja-JPjv-IDkm-KHko-KRlt-LTlv-LVmr-INms-MYmt-MTmy-MMnb-NOnl-BEkk-KZnl-NLpl-PLpt-BRpt-PTro-ROru-RUsk-SKsl-SIso-SOsu-IDsv-SEsw-KEsw-TZta-INta-LKta-SGte-INth-THtr-TRuk-UAur-INur-PKuz-UZvi-VNzh-CNzh-HKzh-TWzu-ZAkn-IN"
 
-var _LocaleIndex = [...]uint16{0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 330, 336, 341, 346, 351, 356, 361, 366, 371, 376, 381, 386, 391, 396, 401, 406, 411, 416, 421, 426, 431, 436, 441, 446, 451, 456, 461, 466, 471, 476, 481, 486, 491, 496, 501, 506, 511, 516, 521, 526, 531, 536, 541, 546, 551, 556, 561, 566, 571, 576, 581, 586, 591, 596, 601, 606, 611}
+var _LocaleIndex = [...]uint16{0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 330, 336, 341, 346, 351, 356, 361, 366, 371, 376, 381, 386, 391, 396, 401, 406, 411, 416, 421, 426, 431, 436, 441, 446, 451, 456, 461, 466, 471, 476, 481, 486, 491, 496, 501, 506, 511, 516, 521, 526, 531, 536, 541, 546, 551, 556, 561, 566, 571, 576, 581, 586, 591, 596, 601, 606, 611, 616}
 
-const _LocaleLowerName = "af-zaam-etar-aear-bhar-dzar-egar-iqar-joar-kwar-lyar-maar-qaar-saar-syar-tnar-yebg-bgbn-bdbn-inca-escs-czcy-gbda-dkde-atde-chde-deel-gren-auen-caen-gben-hken-ieen-inen-keen-ngen-nzen-phen-sgen-tzen-usen-zaes-ares-boes-cles-coes-cres-cues-does-eces-eses-gqes-gtes-hnes-mxes-nies-paes-pees-pres-pyes-sves-uses-uyes-veet-eefa-irfi-fifil-phfr-befr-cafr-chfr-frga-iegl-esgu-inhe-ilhi-inhr-hrhu-huid-idis-isit-itja-jpjv-idkm-khko-krlt-ltlv-lvmr-inms-mymt-mtmy-mmnb-nonl-bekk-kznl-nlpl-plpt-brpt-ptro-roru-rusk-sksl-siso-sosu-idsv-sesw-kesw-tzta-inta-lkta-sgte-inth-thtr-truk-uaur-inur-pkuz-uzvi-vnzh-cnzh-hkzh-twzu-za"
+const _LocaleLowerName = "af-zaam-etar-aear-bhar-dzar-egar-iqar-joar-kwar-lyar-maar-qaar-saar-syar-tnar-yebg-bgbn-bdbn-inca-escs-czcy-gbda-dkde-atde-chde-deel-gren-auen-caen-gben-hken-ieen-inen-keen-ngen-nzen-phen-sgen-tzen-usen-zaes-ares-boes-cles-coes-cres-cues-does-eces-eses-gqes-gtes-hnes-mxes-nies-paes-pees-pres-pyes-sves-uses-uyes-veet-eefa-irfi-fifil-phfr-befr-cafr-chfr-frga-iegl-esgu-inhe-ilhi-inhr-hrhu-huid-idis-isit-itja-jpjv-idkm-khko-krlt-ltlv-lvmr-inms-mymt-mtmy-mmnb-nonl-bekk-kznl-nlpl-plpt-brpt-ptro-roru-rusk-sksl-siso-sosu-idsv-sesw-kesw-tzta-inta-lkta-sgte-inth-thtr-truk-uaur-inur-pkuz-uzvi-vnzh-cnzh-hkzh-twzu-zakn-in"
 
 func (i Locale) String() string {
 	if i < 0 || i >= Locale(len(_LocaleIndex)-1) {
@@ -147,9 +147,10 @@ func _LocaleNoOp() {
 	_ = x[LocalezhHK-(119)]
 	_ = x[LocalezhTW-(120)]
 	_ = x[LocalezuZA-(121)]
+	_ = x[LocaleknIN-(122)]
 }
 
-var _LocaleValues = []Locale{LocaleafZA, LocaleamET, LocalearAE, LocalearBH, LocalearDZ, LocalearEG, LocalearIQ, LocalearJO, LocalearKW, LocalearLY, LocalearMA, LocalearQA, LocalearSA, LocalearSY, LocalearTN, LocalearYE, LocalebgBG, LocalebnBD, LocalebnIN, LocalecaES, LocalecsCZ, LocalecyGB, LocaledaDK, LocaledeAT, LocaledeCH, LocaledeDE, LocaleelGR, LocaleenAU, LocaleenCA, LocaleenGB, LocaleenHK, LocaleenIE, LocaleenIN, LocaleenKE, LocaleenNG, LocaleenNZ, LocaleenPH, LocaleenSG, LocaleenTZ, LocaleenUS, LocaleenZA, LocaleesAR, LocaleesBO, LocaleesCL, LocaleesCO, LocaleesCR, LocaleesCU, LocaleesDO, LocaleesEC, LocaleesES, LocaleesGQ, LocaleesGT, LocaleesHN, LocaleesMX, LocaleesNI, LocaleesPA, LocaleesPE, LocaleesPR, LocaleesPY, LocaleesSV, LocaleesUS, LocaleesUY, LocaleesVE, LocaleetEE, LocalefaIR, LocalefiFI, LocalefilPH, LocalefrBE, LocalefrCA, LocalefrCH, LocalefrFR, LocalegaIE, LocaleglES, LocaleguIN, LocaleheIL, LocalehiIN, LocalehrHR, LocalehuHU, LocaleidID, LocaleisIS, LocaleitIT, LocalejaJP, LocalejvID, LocalekmKH, LocalekoKR, LocaleltLT, LocalelvLV, LocalemrIN, LocalemsMY, LocalemtMT, LocalemyMM, LocalenbNO, LocalenlBE, LocalekkKZ, LocalenlNL, LocaleplPL, LocaleptBR, LocaleptPT, LocaleroRO, LocaleruRU, LocaleskSK, LocaleslSI, LocalesoSO, LocalesuID, LocalesvSE, LocaleswKE, LocaleswTZ, LocaletaIN, LocaletaLK, LocaletaSG, LocaleteIN, LocalethTH, LocaletrTR, LocaleukUA, LocaleurIN, LocaleurPK, LocaleuzUZ, LocaleviVN, LocalezhCN, LocalezhHK, LocalezhTW, LocalezuZA}
+var _LocaleValues = []Locale{LocaleafZA, LocaleamET, LocalearAE, LocalearBH, LocalearDZ, LocalearEG, LocalearIQ, LocalearJO, LocalearKW, LocalearLY, LocalearMA, LocalearQA, LocalearSA, LocalearSY, LocalearTN, LocalearYE, LocalebgBG, LocalebnBD, LocalebnIN, LocalecaES, LocalecsCZ, LocalecyGB, LocaledaDK, LocaledeAT, LocaledeCH, LocaledeDE, LocaleelGR, LocaleenAU, LocaleenCA, LocaleenGB, LocaleenHK, LocaleenIE, LocaleenIN, LocaleenKE, LocaleenNG, LocaleenNZ, LocaleenPH, LocaleenSG, LocaleenTZ, LocaleenUS, LocaleenZA, LocaleesAR, LocaleesBO, LocaleesCL, LocaleesCO, LocaleesCR, LocaleesCU, LocaleesDO, LocaleesEC, LocaleesES, LocaleesGQ, LocaleesGT, LocaleesHN, LocaleesMX, LocaleesNI, LocaleesPA, LocaleesPE, LocaleesPR, LocaleesPY, LocaleesSV, LocaleesUS, LocaleesUY, LocaleesVE, LocaleetEE, LocalefaIR, LocalefiFI, LocalefilPH, LocalefrBE, LocalefrCA, LocalefrCH, LocalefrFR, LocalegaIE, LocaleglES, LocaleguIN, LocaleheIL, LocalehiIN, LocalehrHR, LocalehuHU, LocaleidID, LocaleisIS, LocaleitIT, LocalejaJP, LocalejvID, LocalekmKH, LocalekoKR, LocaleltLT, LocalelvLV, LocalemrIN, LocalemsMY, LocalemtMT, LocalemyMM, LocalenbNO, LocalenlBE, LocalekkKZ, LocalenlNL, LocaleplPL, LocaleptBR, LocaleptPT, LocaleroRO, LocaleruRU, LocaleskSK, LocaleslSI, LocalesoSO, LocalesuID, LocalesvSE, LocaleswKE, LocaleswTZ, LocaletaIN, LocaletaLK, LocaletaSG, LocaleteIN, LocalethTH, LocaletrTR, LocaleukUA, LocaleurIN, LocaleurPK, LocaleuzUZ, LocaleviVN, LocalezhCN, LocalezhHK, LocalezhTW, LocalezuZA, LocaleknIN}
 
 var _LocaleNameToValueMap = map[string]Locale{
 	_LocaleName[0:5]:          LocaleafZA,
@@ -396,6 +397,8 @@ var _LocaleNameToValueMap = map[string]Locale{
 	_LocaleLowerName[601:606]: LocalezhTW,
 	_LocaleName[606:611]:      LocalezuZA,
 	_LocaleLowerName[606:611]: LocalezuZA,
+	_LocaleName[611:616]:      LocaleknIN,
+	_LocaleLowerName[611:616]: LocaleknIN,
 }
 
 var _LocaleNames = []string{
@@ -521,6 +524,7 @@ var _LocaleNames = []string{
 	_LocaleName[596:601],
 	_LocaleName[601:606],
 	_LocaleName[606:611],
+	_LocaleName[611:616],
 }
 
 // LocaleString retrieves an enum value from the enum constants string name.
