@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _LocaleName = "af-ZAam-ETar-AEar-BHar-DZar-EGar-IQar-JOar-KWar-LYar-MAar-QAar-SAar-SYar-TNar-YEbg-BGbn-BDca-EScs-CZcy-GBda-DKde-ATde-CHde-DEel-GRen-AUen-CAen-GBen-HKen-IEen-INen-KEen-NGen-NZen-PHen-SGen-TZen-USen-ZAes-ARes-BOes-CLes-COes-CRes-CUes-DOes-ECes-ESes-GQes-GTes-HNes-MXes-NIes-PAes-PEes-PRes-PYes-SVes-USes-UYes-VEet-EEfa-IRfi-FIfil-PHfr-BEfr-CAfr-CHfr-FRga-IEgl-ESgu-INhe-ILhi-INhr-HRhu-HUid-IDit-ITja-JPjv-IDkm-KHko-KRlt-LTlv-LVmr-INms-MYmt-MTmy-MMnb-NOnl-BEnl-NLpl-PLpt-BRpt-PTro-ROru-RUsk-SKsl-SIso-SOsu-IDsv-SEsw-KEsw-TZta-INta-LKta-SGte-INth-THtr-TRuk-UAur-INur-PKuz-UZvi-VNzh-CNzh-HKzh-TWzu-ZA"
+const _LocaleName = "af-ZAam-ETar-AEar-BHar-DZar-EGar-IQar-JOar-KWar-LYar-MAar-QAar-SAar-SYar-TNar-YEbg-BGbn-BDbn-INca-EScs-CZcy-GBda-DKde-ATde-CHde-DEel-GRen-AUen-CAen-GBen-HKen-IEen-INen-KEen-NGen-NZen-PHen-SGen-TZen-USen-ZAes-ARes-BOes-CLes-COes-CRes-CUes-DOes-ECes-ESes-GQes-GTes-HNes-MXes-NIes-PAes-PEes-PRes-PYes-SVes-USes-UYes-VEet-EEfa-IRfi-FIfil-PHfr-BEfr-CAfr-CHfr-FRga-IEgl-ESgu-INhe-ILhi-INhr-HRhu-HUid-IDit-ITja-JPjv-IDkm-KHko-KRlt-LTlv-LVmr-INms-MYmt-MTmy-MMnb-NOnl-BEnl-NLpl-PLpt-BRpt-PTro-ROru-RUsk-SKsl-SIso-SOsu-IDsv-SEsw-KEsw-TZta-INta-LKta-SGte-INth-THtr-TRuk-UAur-INur-PKuz-UZvi-VNzh-CNzh-HKzh-TWzu-ZA"
 
-var _LocaleIndex = [...]uint16{0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 331, 336, 341, 346, 351, 356, 361, 366, 371, 376, 381, 386, 391, 396, 401, 406, 411, 416, 421, 426, 431, 436, 441, 446, 451, 456, 461, 466, 471, 476, 481, 486, 491, 496, 501, 506, 511, 516, 521, 526, 531, 536, 541, 546, 551, 556, 561, 566, 571, 576, 581, 586, 591, 596}
+var _LocaleIndex = [...]uint16{0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170, 175, 180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230, 235, 240, 245, 250, 255, 260, 265, 270, 275, 280, 285, 290, 295, 300, 305, 310, 315, 320, 325, 330, 336, 341, 346, 351, 356, 361, 366, 371, 376, 381, 386, 391, 396, 401, 406, 411, 416, 421, 426, 431, 436, 441, 446, 451, 456, 461, 466, 471, 476, 481, 486, 491, 496, 501, 506, 511, 516, 521, 526, 531, 536, 541, 546, 551, 556, 561, 566, 571, 576, 581, 586, 591, 596, 601}
 
-const _LocaleLowerName = "af-zaam-etar-aear-bhar-dzar-egar-iqar-joar-kwar-lyar-maar-qaar-saar-syar-tnar-yebg-bgbn-bdca-escs-czcy-gbda-dkde-atde-chde-deel-gren-auen-caen-gben-hken-ieen-inen-keen-ngen-nzen-phen-sgen-tzen-usen-zaes-ares-boes-cles-coes-cres-cues-does-eces-eses-gqes-gtes-hnes-mxes-nies-paes-pees-pres-pyes-sves-uses-uyes-veet-eefa-irfi-fifil-phfr-befr-cafr-chfr-frga-iegl-esgu-inhe-ilhi-inhr-hrhu-huid-idit-itja-jpjv-idkm-khko-krlt-ltlv-lvmr-inms-mymt-mtmy-mmnb-nonl-benl-nlpl-plpt-brpt-ptro-roru-rusk-sksl-siso-sosu-idsv-sesw-kesw-tzta-inta-lkta-sgte-inth-thtr-truk-uaur-inur-pkuz-uzvi-vnzh-cnzh-hkzh-twzu-za"
+const _LocaleLowerName = "af-zaam-etar-aear-bhar-dzar-egar-iqar-joar-kwar-lyar-maar-qaar-saar-syar-tnar-yebg-bgbn-bdbn-inca-escs-czcy-gbda-dkde-atde-chde-deel-gren-auen-caen-gben-hken-ieen-inen-keen-ngen-nzen-phen-sgen-tzen-usen-zaes-ares-boes-cles-coes-cres-cues-does-eces-eses-gqes-gtes-hnes-mxes-nies-paes-pees-pres-pyes-sves-uses-uyes-veet-eefa-irfi-fifil-phfr-befr-cafr-chfr-frga-iegl-esgu-inhe-ilhi-inhr-hrhu-huid-idit-itja-jpjv-idkm-khko-krlt-ltlv-lvmr-inms-mymt-mtmy-mmnb-nonl-benl-nlpl-plpt-brpt-ptro-roru-rusk-sksl-siso-sosu-idsv-sesw-kesw-tzta-inta-lkta-sgte-inth-thtr-truk-uaur-inur-pkuz-uzvi-vnzh-cnzh-hkzh-twzu-za"
 
 func (i Locale) String() string {
 	if i < 0 || i >= Locale(len(_LocaleIndex)-1) {
@@ -43,110 +43,111 @@ func _LocaleNoOp() {
 	_ = x[LocalearYE-(15)]
 	_ = x[LocalebgBG-(16)]
 	_ = x[LocalebnBD-(17)]
-	_ = x[LocalecaES-(18)]
-	_ = x[LocalecsCZ-(19)]
-	_ = x[LocalecyGB-(20)]
-	_ = x[LocaledaDK-(21)]
-	_ = x[LocaledeAT-(22)]
-	_ = x[LocaledeCH-(23)]
-	_ = x[LocaledeDE-(24)]
-	_ = x[LocaleelGR-(25)]
-	_ = x[LocaleenAU-(26)]
-	_ = x[LocaleenCA-(27)]
-	_ = x[LocaleenGB-(28)]
-	_ = x[LocaleenHK-(29)]
-	_ = x[LocaleenIE-(30)]
-	_ = x[LocaleenIN-(31)]
-	_ = x[LocaleenKE-(32)]
-	_ = x[LocaleenNG-(33)]
-	_ = x[LocaleenNZ-(34)]
-	_ = x[LocaleenPH-(35)]
-	_ = x[LocaleenSG-(36)]
-	_ = x[LocaleenTZ-(37)]
-	_ = x[LocaleenUS-(38)]
-	_ = x[LocaleenZA-(39)]
-	_ = x[LocaleesAR-(40)]
-	_ = x[LocaleesBO-(41)]
-	_ = x[LocaleesCL-(42)]
-	_ = x[LocaleesCO-(43)]
-	_ = x[LocaleesCR-(44)]
-	_ = x[LocaleesCU-(45)]
-	_ = x[LocaleesDO-(46)]
-	_ = x[LocaleesEC-(47)]
-	_ = x[LocaleesES-(48)]
-	_ = x[LocaleesGQ-(49)]
-	_ = x[LocaleesGT-(50)]
-	_ = x[LocaleesHN-(51)]
-	_ = x[LocaleesMX-(52)]
-	_ = x[LocaleesNI-(53)]
-	_ = x[LocaleesPA-(54)]
-	_ = x[LocaleesPE-(55)]
-	_ = x[LocaleesPR-(56)]
-	_ = x[LocaleesPY-(57)]
-	_ = x[LocaleesSV-(58)]
-	_ = x[LocaleesUS-(59)]
-	_ = x[LocaleesUY-(60)]
-	_ = x[LocaleesVE-(61)]
-	_ = x[LocaleetEE-(62)]
-	_ = x[LocalefaIR-(63)]
-	_ = x[LocalefiFI-(64)]
-	_ = x[LocalefilPH-(65)]
-	_ = x[LocalefrBE-(66)]
-	_ = x[LocalefrCA-(67)]
-	_ = x[LocalefrCH-(68)]
-	_ = x[LocalefrFR-(69)]
-	_ = x[LocalegaIE-(70)]
-	_ = x[LocaleglES-(71)]
-	_ = x[LocaleguIN-(72)]
-	_ = x[LocaleheIL-(73)]
-	_ = x[LocalehiIN-(74)]
-	_ = x[LocalehrHR-(75)]
-	_ = x[LocalehuHU-(76)]
-	_ = x[LocaleidID-(77)]
-	_ = x[LocaleitIT-(78)]
-	_ = x[LocalejaJP-(79)]
-	_ = x[LocalejvID-(80)]
-	_ = x[LocalekmKH-(81)]
-	_ = x[LocalekoKR-(82)]
-	_ = x[LocaleltLT-(83)]
-	_ = x[LocalelvLV-(84)]
-	_ = x[LocalemrIN-(85)]
-	_ = x[LocalemsMY-(86)]
-	_ = x[LocalemtMT-(87)]
-	_ = x[LocalemyMM-(88)]
-	_ = x[LocalenbNO-(89)]
-	_ = x[LocalenlBE-(90)]
-	_ = x[LocalenlNL-(91)]
-	_ = x[LocaleplPL-(92)]
-	_ = x[LocaleptBR-(93)]
-	_ = x[LocaleptPT-(94)]
-	_ = x[LocaleroRO-(95)]
-	_ = x[LocaleruRU-(96)]
-	_ = x[LocaleskSK-(97)]
-	_ = x[LocaleslSI-(98)]
-	_ = x[LocalesoSO-(99)]
-	_ = x[LocalesuID-(100)]
-	_ = x[LocalesvSE-(101)]
-	_ = x[LocaleswKE-(102)]
-	_ = x[LocaleswTZ-(103)]
-	_ = x[LocaletaIN-(104)]
-	_ = x[LocaletaLK-(105)]
-	_ = x[LocaletaSG-(106)]
-	_ = x[LocaleteIN-(107)]
-	_ = x[LocalethTH-(108)]
-	_ = x[LocaletrTR-(109)]
-	_ = x[LocaleukUA-(110)]
-	_ = x[LocaleurIN-(111)]
-	_ = x[LocaleurPK-(112)]
-	_ = x[LocaleuzUZ-(113)]
-	_ = x[LocaleviVN-(114)]
-	_ = x[LocalezhCN-(115)]
-	_ = x[LocalezhHK-(116)]
-	_ = x[LocalezhTW-(117)]
-	_ = x[LocalezuZA-(118)]
+	_ = x[LocalebnIN-(18)]
+	_ = x[LocalecaES-(19)]
+	_ = x[LocalecsCZ-(20)]
+	_ = x[LocalecyGB-(21)]
+	_ = x[LocaledaDK-(22)]
+	_ = x[LocaledeAT-(23)]
+	_ = x[LocaledeCH-(24)]
+	_ = x[LocaledeDE-(25)]
+	_ = x[LocaleelGR-(26)]
+	_ = x[LocaleenAU-(27)]
+	_ = x[LocaleenCA-(28)]
+	_ = x[LocaleenGB-(29)]
+	_ = x[LocaleenHK-(30)]
+	_ = x[LocaleenIE-(31)]
+	_ = x[LocaleenIN-(32)]
+	_ = x[LocaleenKE-(33)]
+	_ = x[LocaleenNG-(34)]
+	_ = x[LocaleenNZ-(35)]
+	_ = x[LocaleenPH-(36)]
+	_ = x[LocaleenSG-(37)]
+	_ = x[LocaleenTZ-(38)]
+	_ = x[LocaleenUS-(39)]
+	_ = x[LocaleenZA-(40)]
+	_ = x[LocaleesAR-(41)]
+	_ = x[LocaleesBO-(42)]
+	_ = x[LocaleesCL-(43)]
+	_ = x[LocaleesCO-(44)]
+	_ = x[LocaleesCR-(45)]
+	_ = x[LocaleesCU-(46)]
+	_ = x[LocaleesDO-(47)]
+	_ = x[LocaleesEC-(48)]
+	_ = x[LocaleesES-(49)]
+	_ = x[LocaleesGQ-(50)]
+	_ = x[LocaleesGT-(51)]
+	_ = x[LocaleesHN-(52)]
+	_ = x[LocaleesMX-(53)]
+	_ = x[LocaleesNI-(54)]
+	_ = x[LocaleesPA-(55)]
+	_ = x[LocaleesPE-(56)]
+	_ = x[LocaleesPR-(57)]
+	_ = x[LocaleesPY-(58)]
+	_ = x[LocaleesSV-(59)]
+	_ = x[LocaleesUS-(60)]
+	_ = x[LocaleesUY-(61)]
+	_ = x[LocaleesVE-(62)]
+	_ = x[LocaleetEE-(63)]
+	_ = x[LocalefaIR-(64)]
+	_ = x[LocalefiFI-(65)]
+	_ = x[LocalefilPH-(66)]
+	_ = x[LocalefrBE-(67)]
+	_ = x[LocalefrCA-(68)]
+	_ = x[LocalefrCH-(69)]
+	_ = x[LocalefrFR-(70)]
+	_ = x[LocalegaIE-(71)]
+	_ = x[LocaleglES-(72)]
+	_ = x[LocaleguIN-(73)]
+	_ = x[LocaleheIL-(74)]
+	_ = x[LocalehiIN-(75)]
+	_ = x[LocalehrHR-(76)]
+	_ = x[LocalehuHU-(77)]
+	_ = x[LocaleidID-(78)]
+	_ = x[LocaleitIT-(79)]
+	_ = x[LocalejaJP-(80)]
+	_ = x[LocalejvID-(81)]
+	_ = x[LocalekmKH-(82)]
+	_ = x[LocalekoKR-(83)]
+	_ = x[LocaleltLT-(84)]
+	_ = x[LocalelvLV-(85)]
+	_ = x[LocalemrIN-(86)]
+	_ = x[LocalemsMY-(87)]
+	_ = x[LocalemtMT-(88)]
+	_ = x[LocalemyMM-(89)]
+	_ = x[LocalenbNO-(90)]
+	_ = x[LocalenlBE-(91)]
+	_ = x[LocalenlNL-(92)]
+	_ = x[LocaleplPL-(93)]
+	_ = x[LocaleptBR-(94)]
+	_ = x[LocaleptPT-(95)]
+	_ = x[LocaleroRO-(96)]
+	_ = x[LocaleruRU-(97)]
+	_ = x[LocaleskSK-(98)]
+	_ = x[LocaleslSI-(99)]
+	_ = x[LocalesoSO-(100)]
+	_ = x[LocalesuID-(101)]
+	_ = x[LocalesvSE-(102)]
+	_ = x[LocaleswKE-(103)]
+	_ = x[LocaleswTZ-(104)]
+	_ = x[LocaletaIN-(105)]
+	_ = x[LocaletaLK-(106)]
+	_ = x[LocaletaSG-(107)]
+	_ = x[LocaleteIN-(108)]
+	_ = x[LocalethTH-(109)]
+	_ = x[LocaletrTR-(110)]
+	_ = x[LocaleukUA-(111)]
+	_ = x[LocaleurIN-(112)]
+	_ = x[LocaleurPK-(113)]
+	_ = x[LocaleuzUZ-(114)]
+	_ = x[LocaleviVN-(115)]
+	_ = x[LocalezhCN-(116)]
+	_ = x[LocalezhHK-(117)]
+	_ = x[LocalezhTW-(118)]
+	_ = x[LocalezuZA-(119)]
 }
 
-var _LocaleValues = []Locale{LocaleafZA, LocaleamET, LocalearAE, LocalearBH, LocalearDZ, LocalearEG, LocalearIQ, LocalearJO, LocalearKW, LocalearLY, LocalearMA, LocalearQA, LocalearSA, LocalearSY, LocalearTN, LocalearYE, LocalebgBG, LocalebnBD, LocalecaES, LocalecsCZ, LocalecyGB, LocaledaDK, LocaledeAT, LocaledeCH, LocaledeDE, LocaleelGR, LocaleenAU, LocaleenCA, LocaleenGB, LocaleenHK, LocaleenIE, LocaleenIN, LocaleenKE, LocaleenNG, LocaleenNZ, LocaleenPH, LocaleenSG, LocaleenTZ, LocaleenUS, LocaleenZA, LocaleesAR, LocaleesBO, LocaleesCL, LocaleesCO, LocaleesCR, LocaleesCU, LocaleesDO, LocaleesEC, LocaleesES, LocaleesGQ, LocaleesGT, LocaleesHN, LocaleesMX, LocaleesNI, LocaleesPA, LocaleesPE, LocaleesPR, LocaleesPY, LocaleesSV, LocaleesUS, LocaleesUY, LocaleesVE, LocaleetEE, LocalefaIR, LocalefiFI, LocalefilPH, LocalefrBE, LocalefrCA, LocalefrCH, LocalefrFR, LocalegaIE, LocaleglES, LocaleguIN, LocaleheIL, LocalehiIN, LocalehrHR, LocalehuHU, LocaleidID, LocaleitIT, LocalejaJP, LocalejvID, LocalekmKH, LocalekoKR, LocaleltLT, LocalelvLV, LocalemrIN, LocalemsMY, LocalemtMT, LocalemyMM, LocalenbNO, LocalenlBE, LocalenlNL, LocaleplPL, LocaleptBR, LocaleptPT, LocaleroRO, LocaleruRU, LocaleskSK, LocaleslSI, LocalesoSO, LocalesuID, LocalesvSE, LocaleswKE, LocaleswTZ, LocaletaIN, LocaletaLK, LocaletaSG, LocaleteIN, LocalethTH, LocaletrTR, LocaleukUA, LocaleurIN, LocaleurPK, LocaleuzUZ, LocaleviVN, LocalezhCN, LocalezhHK, LocalezhTW, LocalezuZA}
+var _LocaleValues = []Locale{LocaleafZA, LocaleamET, LocalearAE, LocalearBH, LocalearDZ, LocalearEG, LocalearIQ, LocalearJO, LocalearKW, LocalearLY, LocalearMA, LocalearQA, LocalearSA, LocalearSY, LocalearTN, LocalearYE, LocalebgBG, LocalebnBD, LocalebnIN, LocalecaES, LocalecsCZ, LocalecyGB, LocaledaDK, LocaledeAT, LocaledeCH, LocaledeDE, LocaleelGR, LocaleenAU, LocaleenCA, LocaleenGB, LocaleenHK, LocaleenIE, LocaleenIN, LocaleenKE, LocaleenNG, LocaleenNZ, LocaleenPH, LocaleenSG, LocaleenTZ, LocaleenUS, LocaleenZA, LocaleesAR, LocaleesBO, LocaleesCL, LocaleesCO, LocaleesCR, LocaleesCU, LocaleesDO, LocaleesEC, LocaleesES, LocaleesGQ, LocaleesGT, LocaleesHN, LocaleesMX, LocaleesNI, LocaleesPA, LocaleesPE, LocaleesPR, LocaleesPY, LocaleesSV, LocaleesUS, LocaleesUY, LocaleesVE, LocaleetEE, LocalefaIR, LocalefiFI, LocalefilPH, LocalefrBE, LocalefrCA, LocalefrCH, LocalefrFR, LocalegaIE, LocaleglES, LocaleguIN, LocaleheIL, LocalehiIN, LocalehrHR, LocalehuHU, LocaleidID, LocaleitIT, LocalejaJP, LocalejvID, LocalekmKH, LocalekoKR, LocaleltLT, LocalelvLV, LocalemrIN, LocalemsMY, LocalemtMT, LocalemyMM, LocalenbNO, LocalenlBE, LocalenlNL, LocaleplPL, LocaleptBR, LocaleptPT, LocaleroRO, LocaleruRU, LocaleskSK, LocaleslSI, LocalesoSO, LocalesuID, LocalesvSE, LocaleswKE, LocaleswTZ, LocaletaIN, LocaletaLK, LocaletaSG, LocaleteIN, LocalethTH, LocaletrTR, LocaleukUA, LocaleurIN, LocaleurPK, LocaleuzUZ, LocaleviVN, LocalezhCN, LocalezhHK, LocalezhTW, LocalezuZA}
 
 var _LocaleNameToValueMap = map[string]Locale{
 	_LocaleName[0:5]:          LocaleafZA,
@@ -185,208 +186,210 @@ var _LocaleNameToValueMap = map[string]Locale{
 	_LocaleLowerName[80:85]:   LocalebgBG,
 	_LocaleName[85:90]:        LocalebnBD,
 	_LocaleLowerName[85:90]:   LocalebnBD,
-	_LocaleName[90:95]:        LocalecaES,
-	_LocaleLowerName[90:95]:   LocalecaES,
-	_LocaleName[95:100]:       LocalecsCZ,
-	_LocaleLowerName[95:100]:  LocalecsCZ,
-	_LocaleName[100:105]:      LocalecyGB,
-	_LocaleLowerName[100:105]: LocalecyGB,
-	_LocaleName[105:110]:      LocaledaDK,
-	_LocaleLowerName[105:110]: LocaledaDK,
-	_LocaleName[110:115]:      LocaledeAT,
-	_LocaleLowerName[110:115]: LocaledeAT,
-	_LocaleName[115:120]:      LocaledeCH,
-	_LocaleLowerName[115:120]: LocaledeCH,
-	_LocaleName[120:125]:      LocaledeDE,
-	_LocaleLowerName[120:125]: LocaledeDE,
-	_LocaleName[125:130]:      LocaleelGR,
-	_LocaleLowerName[125:130]: LocaleelGR,
-	_LocaleName[130:135]:      LocaleenAU,
-	_LocaleLowerName[130:135]: LocaleenAU,
-	_LocaleName[135:140]:      LocaleenCA,
-	_LocaleLowerName[135:140]: LocaleenCA,
-	_LocaleName[140:145]:      LocaleenGB,
-	_LocaleLowerName[140:145]: LocaleenGB,
-	_LocaleName[145:150]:      LocaleenHK,
-	_LocaleLowerName[145:150]: LocaleenHK,
-	_LocaleName[150:155]:      LocaleenIE,
-	_LocaleLowerName[150:155]: LocaleenIE,
-	_LocaleName[155:160]:      LocaleenIN,
-	_LocaleLowerName[155:160]: LocaleenIN,
-	_LocaleName[160:165]:      LocaleenKE,
-	_LocaleLowerName[160:165]: LocaleenKE,
-	_LocaleName[165:170]:      LocaleenNG,
-	_LocaleLowerName[165:170]: LocaleenNG,
-	_LocaleName[170:175]:      LocaleenNZ,
-	_LocaleLowerName[170:175]: LocaleenNZ,
-	_LocaleName[175:180]:      LocaleenPH,
-	_LocaleLowerName[175:180]: LocaleenPH,
-	_LocaleName[180:185]:      LocaleenSG,
-	_LocaleLowerName[180:185]: LocaleenSG,
-	_LocaleName[185:190]:      LocaleenTZ,
-	_LocaleLowerName[185:190]: LocaleenTZ,
-	_LocaleName[190:195]:      LocaleenUS,
-	_LocaleLowerName[190:195]: LocaleenUS,
-	_LocaleName[195:200]:      LocaleenZA,
-	_LocaleLowerName[195:200]: LocaleenZA,
-	_LocaleName[200:205]:      LocaleesAR,
-	_LocaleLowerName[200:205]: LocaleesAR,
-	_LocaleName[205:210]:      LocaleesBO,
-	_LocaleLowerName[205:210]: LocaleesBO,
-	_LocaleName[210:215]:      LocaleesCL,
-	_LocaleLowerName[210:215]: LocaleesCL,
-	_LocaleName[215:220]:      LocaleesCO,
-	_LocaleLowerName[215:220]: LocaleesCO,
-	_LocaleName[220:225]:      LocaleesCR,
-	_LocaleLowerName[220:225]: LocaleesCR,
-	_LocaleName[225:230]:      LocaleesCU,
-	_LocaleLowerName[225:230]: LocaleesCU,
-	_LocaleName[230:235]:      LocaleesDO,
-	_LocaleLowerName[230:235]: LocaleesDO,
-	_LocaleName[235:240]:      LocaleesEC,
-	_LocaleLowerName[235:240]: LocaleesEC,
-	_LocaleName[240:245]:      LocaleesES,
-	_LocaleLowerName[240:245]: LocaleesES,
-	_LocaleName[245:250]:      LocaleesGQ,
-	_LocaleLowerName[245:250]: LocaleesGQ,
-	_LocaleName[250:255]:      LocaleesGT,
-	_LocaleLowerName[250:255]: LocaleesGT,
-	_LocaleName[255:260]:      LocaleesHN,
-	_LocaleLowerName[255:260]: LocaleesHN,
-	_LocaleName[260:265]:      LocaleesMX,
-	_LocaleLowerName[260:265]: LocaleesMX,
-	_LocaleName[265:270]:      LocaleesNI,
-	_LocaleLowerName[265:270]: LocaleesNI,
-	_LocaleName[270:275]:      LocaleesPA,
-	_LocaleLowerName[270:275]: LocaleesPA,
-	_LocaleName[275:280]:      LocaleesPE,
-	_LocaleLowerName[275:280]: LocaleesPE,
-	_LocaleName[280:285]:      LocaleesPR,
-	_LocaleLowerName[280:285]: LocaleesPR,
-	_LocaleName[285:290]:      LocaleesPY,
-	_LocaleLowerName[285:290]: LocaleesPY,
-	_LocaleName[290:295]:      LocaleesSV,
-	_LocaleLowerName[290:295]: LocaleesSV,
-	_LocaleName[295:300]:      LocaleesUS,
-	_LocaleLowerName[295:300]: LocaleesUS,
-	_LocaleName[300:305]:      LocaleesUY,
-	_LocaleLowerName[300:305]: LocaleesUY,
-	_LocaleName[305:310]:      LocaleesVE,
-	_LocaleLowerName[305:310]: LocaleesVE,
-	_LocaleName[310:315]:      LocaleetEE,
-	_LocaleLowerName[310:315]: LocaleetEE,
-	_LocaleName[315:320]:      LocalefaIR,
-	_LocaleLowerName[315:320]: LocalefaIR,
-	_LocaleName[320:325]:      LocalefiFI,
-	_LocaleLowerName[320:325]: LocalefiFI,
-	_LocaleName[325:331]:      LocalefilPH,
-	_LocaleLowerName[325:331]: LocalefilPH,
-	_LocaleName[331:336]:      LocalefrBE,
-	_LocaleLowerName[331:336]: LocalefrBE,
-	_LocaleName[336:341]:      LocalefrCA,
-	_LocaleLowerName[336:341]: LocalefrCA,
-	_LocaleName[341:346]:      LocalefrCH,
-	_LocaleLowerName[341:346]: LocalefrCH,
-	_LocaleName[346:351]:      LocalefrFR,
-	_LocaleLowerName[346:351]: LocalefrFR,
-	_LocaleName[351:356]:      LocalegaIE,
-	_LocaleLowerName[351:356]: LocalegaIE,
-	_LocaleName[356:361]:      LocaleglES,
-	_LocaleLowerName[356:361]: LocaleglES,
-	_LocaleName[361:366]:      LocaleguIN,
-	_LocaleLowerName[361:366]: LocaleguIN,
-	_LocaleName[366:371]:      LocaleheIL,
-	_LocaleLowerName[366:371]: LocaleheIL,
-	_LocaleName[371:376]:      LocalehiIN,
-	_LocaleLowerName[371:376]: LocalehiIN,
-	_LocaleName[376:381]:      LocalehrHR,
-	_LocaleLowerName[376:381]: LocalehrHR,
-	_LocaleName[381:386]:      LocalehuHU,
-	_LocaleLowerName[381:386]: LocalehuHU,
-	_LocaleName[386:391]:      LocaleidID,
-	_LocaleLowerName[386:391]: LocaleidID,
-	_LocaleName[391:396]:      LocaleitIT,
-	_LocaleLowerName[391:396]: LocaleitIT,
-	_LocaleName[396:401]:      LocalejaJP,
-	_LocaleLowerName[396:401]: LocalejaJP,
-	_LocaleName[401:406]:      LocalejvID,
-	_LocaleLowerName[401:406]: LocalejvID,
-	_LocaleName[406:411]:      LocalekmKH,
-	_LocaleLowerName[406:411]: LocalekmKH,
-	_LocaleName[411:416]:      LocalekoKR,
-	_LocaleLowerName[411:416]: LocalekoKR,
-	_LocaleName[416:421]:      LocaleltLT,
-	_LocaleLowerName[416:421]: LocaleltLT,
-	_LocaleName[421:426]:      LocalelvLV,
-	_LocaleLowerName[421:426]: LocalelvLV,
-	_LocaleName[426:431]:      LocalemrIN,
-	_LocaleLowerName[426:431]: LocalemrIN,
-	_LocaleName[431:436]:      LocalemsMY,
-	_LocaleLowerName[431:436]: LocalemsMY,
-	_LocaleName[436:441]:      LocalemtMT,
-	_LocaleLowerName[436:441]: LocalemtMT,
-	_LocaleName[441:446]:      LocalemyMM,
-	_LocaleLowerName[441:446]: LocalemyMM,
-	_LocaleName[446:451]:      LocalenbNO,
-	_LocaleLowerName[446:451]: LocalenbNO,
-	_LocaleName[451:456]:      LocalenlBE,
-	_LocaleLowerName[451:456]: LocalenlBE,
-	_LocaleName[456:461]:      LocalenlNL,
-	_LocaleLowerName[456:461]: LocalenlNL,
-	_LocaleName[461:466]:      LocaleplPL,
-	_LocaleLowerName[461:466]: LocaleplPL,
-	_LocaleName[466:471]:      LocaleptBR,
-	_LocaleLowerName[466:471]: LocaleptBR,
-	_LocaleName[471:476]:      LocaleptPT,
-	_LocaleLowerName[471:476]: LocaleptPT,
-	_LocaleName[476:481]:      LocaleroRO,
-	_LocaleLowerName[476:481]: LocaleroRO,
-	_LocaleName[481:486]:      LocaleruRU,
-	_LocaleLowerName[481:486]: LocaleruRU,
-	_LocaleName[486:491]:      LocaleskSK,
-	_LocaleLowerName[486:491]: LocaleskSK,
-	_LocaleName[491:496]:      LocaleslSI,
-	_LocaleLowerName[491:496]: LocaleslSI,
-	_LocaleName[496:501]:      LocalesoSO,
-	_LocaleLowerName[496:501]: LocalesoSO,
-	_LocaleName[501:506]:      LocalesuID,
-	_LocaleLowerName[501:506]: LocalesuID,
-	_LocaleName[506:511]:      LocalesvSE,
-	_LocaleLowerName[506:511]: LocalesvSE,
-	_LocaleName[511:516]:      LocaleswKE,
-	_LocaleLowerName[511:516]: LocaleswKE,
-	_LocaleName[516:521]:      LocaleswTZ,
-	_LocaleLowerName[516:521]: LocaleswTZ,
-	_LocaleName[521:526]:      LocaletaIN,
-	_LocaleLowerName[521:526]: LocaletaIN,
-	_LocaleName[526:531]:      LocaletaLK,
-	_LocaleLowerName[526:531]: LocaletaLK,
-	_LocaleName[531:536]:      LocaletaSG,
-	_LocaleLowerName[531:536]: LocaletaSG,
-	_LocaleName[536:541]:      LocaleteIN,
-	_LocaleLowerName[536:541]: LocaleteIN,
-	_LocaleName[541:546]:      LocalethTH,
-	_LocaleLowerName[541:546]: LocalethTH,
-	_LocaleName[546:551]:      LocaletrTR,
-	_LocaleLowerName[546:551]: LocaletrTR,
-	_LocaleName[551:556]:      LocaleukUA,
-	_LocaleLowerName[551:556]: LocaleukUA,
-	_LocaleName[556:561]:      LocaleurIN,
-	_LocaleLowerName[556:561]: LocaleurIN,
-	_LocaleName[561:566]:      LocaleurPK,
-	_LocaleLowerName[561:566]: LocaleurPK,
-	_LocaleName[566:571]:      LocaleuzUZ,
-	_LocaleLowerName[566:571]: LocaleuzUZ,
-	_LocaleName[571:576]:      LocaleviVN,
-	_LocaleLowerName[571:576]: LocaleviVN,
-	_LocaleName[576:581]:      LocalezhCN,
-	_LocaleLowerName[576:581]: LocalezhCN,
-	_LocaleName[581:586]:      LocalezhHK,
-	_LocaleLowerName[581:586]: LocalezhHK,
-	_LocaleName[586:591]:      LocalezhTW,
-	_LocaleLowerName[586:591]: LocalezhTW,
-	_LocaleName[591:596]:      LocalezuZA,
-	_LocaleLowerName[591:596]: LocalezuZA,
+	_LocaleName[90:95]:        LocalebnIN,
+	_LocaleLowerName[90:95]:   LocalebnIN,
+	_LocaleName[95:100]:       LocalecaES,
+	_LocaleLowerName[95:100]:  LocalecaES,
+	_LocaleName[100:105]:      LocalecsCZ,
+	_LocaleLowerName[100:105]: LocalecsCZ,
+	_LocaleName[105:110]:      LocalecyGB,
+	_LocaleLowerName[105:110]: LocalecyGB,
+	_LocaleName[110:115]:      LocaledaDK,
+	_LocaleLowerName[110:115]: LocaledaDK,
+	_LocaleName[115:120]:      LocaledeAT,
+	_LocaleLowerName[115:120]: LocaledeAT,
+	_LocaleName[120:125]:      LocaledeCH,
+	_LocaleLowerName[120:125]: LocaledeCH,
+	_LocaleName[125:130]:      LocaledeDE,
+	_LocaleLowerName[125:130]: LocaledeDE,
+	_LocaleName[130:135]:      LocaleelGR,
+	_LocaleLowerName[130:135]: LocaleelGR,
+	_LocaleName[135:140]:      LocaleenAU,
+	_LocaleLowerName[135:140]: LocaleenAU,
+	_LocaleName[140:145]:      LocaleenCA,
+	_LocaleLowerName[140:145]: LocaleenCA,
+	_LocaleName[145:150]:      LocaleenGB,
+	_LocaleLowerName[145:150]: LocaleenGB,
+	_LocaleName[150:155]:      LocaleenHK,
+	_LocaleLowerName[150:155]: LocaleenHK,
+	_LocaleName[155:160]:      LocaleenIE,
+	_LocaleLowerName[155:160]: LocaleenIE,
+	_LocaleName[160:165]:      LocaleenIN,
+	_LocaleLowerName[160:165]: LocaleenIN,
+	_LocaleName[165:170]:      LocaleenKE,
+	_LocaleLowerName[165:170]: LocaleenKE,
+	_LocaleName[170:175]:      LocaleenNG,
+	_LocaleLowerName[170:175]: LocaleenNG,
+	_LocaleName[175:180]:      LocaleenNZ,
+	_LocaleLowerName[175:180]: LocaleenNZ,
+	_LocaleName[180:185]:      LocaleenPH,
+	_LocaleLowerName[180:185]: LocaleenPH,
+	_LocaleName[185:190]:      LocaleenSG,
+	_LocaleLowerName[185:190]: LocaleenSG,
+	_LocaleName[190:195]:      LocaleenTZ,
+	_LocaleLowerName[190:195]: LocaleenTZ,
+	_LocaleName[195:200]:      LocaleenUS,
+	_LocaleLowerName[195:200]: LocaleenUS,
+	_LocaleName[200:205]:      LocaleenZA,
+	_LocaleLowerName[200:205]: LocaleenZA,
+	_LocaleName[205:210]:      LocaleesAR,
+	_LocaleLowerName[205:210]: LocaleesAR,
+	_LocaleName[210:215]:      LocaleesBO,
+	_LocaleLowerName[210:215]: LocaleesBO,
+	_LocaleName[215:220]:      LocaleesCL,
+	_LocaleLowerName[215:220]: LocaleesCL,
+	_LocaleName[220:225]:      LocaleesCO,
+	_LocaleLowerName[220:225]: LocaleesCO,
+	_LocaleName[225:230]:      LocaleesCR,
+	_LocaleLowerName[225:230]: LocaleesCR,
+	_LocaleName[230:235]:      LocaleesCU,
+	_LocaleLowerName[230:235]: LocaleesCU,
+	_LocaleName[235:240]:      LocaleesDO,
+	_LocaleLowerName[235:240]: LocaleesDO,
+	_LocaleName[240:245]:      LocaleesEC,
+	_LocaleLowerName[240:245]: LocaleesEC,
+	_LocaleName[245:250]:      LocaleesES,
+	_LocaleLowerName[245:250]: LocaleesES,
+	_LocaleName[250:255]:      LocaleesGQ,
+	_LocaleLowerName[250:255]: LocaleesGQ,
+	_LocaleName[255:260]:      LocaleesGT,
+	_LocaleLowerName[255:260]: LocaleesGT,
+	_LocaleName[260:265]:      LocaleesHN,
+	_LocaleLowerName[260:265]: LocaleesHN,
+	_LocaleName[265:270]:      LocaleesMX,
+	_LocaleLowerName[265:270]: LocaleesMX,
+	_LocaleName[270:275]:      LocaleesNI,
+	_LocaleLowerName[270:275]: LocaleesNI,
+	_LocaleName[275:280]:      LocaleesPA,
+	_LocaleLowerName[275:280]: LocaleesPA,
+	_LocaleName[280:285]:      LocaleesPE,
+	_LocaleLowerName[280:285]: LocaleesPE,
+	_LocaleName[285:290]:      LocaleesPR,
+	_LocaleLowerName[285:290]: LocaleesPR,
+	_LocaleName[290:295]:      LocaleesPY,
+	_LocaleLowerName[290:295]: LocaleesPY,
+	_LocaleName[295:300]:      LocaleesSV,
+	_LocaleLowerName[295:300]: LocaleesSV,
+	_LocaleName[300:305]:      LocaleesUS,
+	_LocaleLowerName[300:305]: LocaleesUS,
+	_LocaleName[305:310]:      LocaleesUY,
+	_LocaleLowerName[305:310]: LocaleesUY,
+	_LocaleName[310:315]:      LocaleesVE,
+	_LocaleLowerName[310:315]: LocaleesVE,
+	_LocaleName[315:320]:      LocaleetEE,
+	_LocaleLowerName[315:320]: LocaleetEE,
+	_LocaleName[320:325]:      LocalefaIR,
+	_LocaleLowerName[320:325]: LocalefaIR,
+	_LocaleName[325:330]:      LocalefiFI,
+	_LocaleLowerName[325:330]: LocalefiFI,
+	_LocaleName[330:336]:      LocalefilPH,
+	_LocaleLowerName[330:336]: LocalefilPH,
+	_LocaleName[336:341]:      LocalefrBE,
+	_LocaleLowerName[336:341]: LocalefrBE,
+	_LocaleName[341:346]:      LocalefrCA,
+	_LocaleLowerName[341:346]: LocalefrCA,
+	_LocaleName[346:351]:      LocalefrCH,
+	_LocaleLowerName[346:351]: LocalefrCH,
+	_LocaleName[351:356]:      LocalefrFR,
+	_LocaleLowerName[351:356]: LocalefrFR,
+	_LocaleName[356:361]:      LocalegaIE,
+	_LocaleLowerName[356:361]: LocalegaIE,
+	_LocaleName[361:366]:      LocaleglES,
+	_LocaleLowerName[361:366]: LocaleglES,
+	_LocaleName[366:371]:      LocaleguIN,
+	_LocaleLowerName[366:371]: LocaleguIN,
+	_LocaleName[371:376]:      LocaleheIL,
+	_LocaleLowerName[371:376]: LocaleheIL,
+	_LocaleName[376:381]:      LocalehiIN,
+	_LocaleLowerName[376:381]: LocalehiIN,
+	_LocaleName[381:386]:      LocalehrHR,
+	_LocaleLowerName[381:386]: LocalehrHR,
+	_LocaleName[386:391]:      LocalehuHU,
+	_LocaleLowerName[386:391]: LocalehuHU,
+	_LocaleName[391:396]:      LocaleidID,
+	_LocaleLowerName[391:396]: LocaleidID,
+	_LocaleName[396:401]:      LocaleitIT,
+	_LocaleLowerName[396:401]: LocaleitIT,
+	_LocaleName[401:406]:      LocalejaJP,
+	_LocaleLowerName[401:406]: LocalejaJP,
+	_LocaleName[406:411]:      LocalejvID,
+	_LocaleLowerName[406:411]: LocalejvID,
+	_LocaleName[411:416]:      LocalekmKH,
+	_LocaleLowerName[411:416]: LocalekmKH,
+	_LocaleName[416:421]:      LocalekoKR,
+	_LocaleLowerName[416:421]: LocalekoKR,
+	_LocaleName[421:426]:      LocaleltLT,
+	_LocaleLowerName[421:426]: LocaleltLT,
+	_LocaleName[426:431]:      LocalelvLV,
+	_LocaleLowerName[426:431]: LocalelvLV,
+	_LocaleName[431:436]:      LocalemrIN,
+	_LocaleLowerName[431:436]: LocalemrIN,
+	_LocaleName[436:441]:      LocalemsMY,
+	_LocaleLowerName[436:441]: LocalemsMY,
+	_LocaleName[441:446]:      LocalemtMT,
+	_LocaleLowerName[441:446]: LocalemtMT,
+	_LocaleName[446:451]:      LocalemyMM,
+	_LocaleLowerName[446:451]: LocalemyMM,
+	_LocaleName[451:456]:      LocalenbNO,
+	_LocaleLowerName[451:456]: LocalenbNO,
+	_LocaleName[456:461]:      LocalenlBE,
+	_LocaleLowerName[456:461]: LocalenlBE,
+	_LocaleName[461:466]:      LocalenlNL,
+	_LocaleLowerName[461:466]: LocalenlNL,
+	_LocaleName[466:471]:      LocaleplPL,
+	_LocaleLowerName[466:471]: LocaleplPL,
+	_LocaleName[471:476]:      LocaleptBR,
+	_LocaleLowerName[471:476]: LocaleptBR,
+	_LocaleName[476:481]:      LocaleptPT,
+	_LocaleLowerName[476:481]: LocaleptPT,
+	_LocaleName[481:486]:      LocaleroRO,
+	_LocaleLowerName[481:486]: LocaleroRO,
+	_LocaleName[486:491]:      LocaleruRU,
+	_LocaleLowerName[486:491]: LocaleruRU,
+	_LocaleName[491:496]:      LocaleskSK,
+	_LocaleLowerName[491:496]: LocaleskSK,
+	_LocaleName[496:501]:      LocaleslSI,
+	_LocaleLowerName[496:501]: LocaleslSI,
+	_LocaleName[501:506]:      LocalesoSO,
+	_LocaleLowerName[501:506]: LocalesoSO,
+	_LocaleName[506:511]:      LocalesuID,
+	_LocaleLowerName[506:511]: LocalesuID,
+	_LocaleName[511:516]:      LocalesvSE,
+	_LocaleLowerName[511:516]: LocalesvSE,
+	_LocaleName[516:521]:      LocaleswKE,
+	_LocaleLowerName[516:521]: LocaleswKE,
+	_LocaleName[521:526]:      LocaleswTZ,
+	_LocaleLowerName[521:526]: LocaleswTZ,
+	_LocaleName[526:531]:      LocaletaIN,
+	_LocaleLowerName[526:531]: LocaletaIN,
+	_LocaleName[531:536]:      LocaletaLK,
+	_LocaleLowerName[531:536]: LocaletaLK,
+	_LocaleName[536:541]:      LocaletaSG,
+	_LocaleLowerName[536:541]: LocaletaSG,
+	_LocaleName[541:546]:      LocaleteIN,
+	_LocaleLowerName[541:546]: LocaleteIN,
+	_LocaleName[546:551]:      LocalethTH,
+	_LocaleLowerName[546:551]: LocalethTH,
+	_LocaleName[551:556]:      LocaletrTR,
+	_LocaleLowerName[551:556]: LocaletrTR,
+	_LocaleName[556:561]:      LocaleukUA,
+	_LocaleLowerName[556:561]: LocaleukUA,
+	_LocaleName[561:566]:      LocaleurIN,
+	_LocaleLowerName[561:566]: LocaleurIN,
+	_LocaleName[566:571]:      LocaleurPK,
+	_LocaleLowerName[566:571]: LocaleurPK,
+	_LocaleName[571:576]:      LocaleuzUZ,
+	_LocaleLowerName[571:576]: LocaleuzUZ,
+	_LocaleName[576:581]:      LocaleviVN,
+	_LocaleLowerName[576:581]: LocaleviVN,
+	_LocaleName[581:586]:      LocalezhCN,
+	_LocaleLowerName[581:586]: LocalezhCN,
+	_LocaleName[586:591]:      LocalezhHK,
+	_LocaleLowerName[586:591]: LocalezhHK,
+	_LocaleName[591:596]:      LocalezhTW,
+	_LocaleLowerName[591:596]: LocalezhTW,
+	_LocaleName[596:601]:      LocalezuZA,
+	_LocaleLowerName[596:601]: LocalezuZA,
 }
 
 var _LocaleNames = []string{
@@ -455,8 +458,8 @@ var _LocaleNames = []string{
 	_LocaleName[310:315],
 	_LocaleName[315:320],
 	_LocaleName[320:325],
-	_LocaleName[325:331],
-	_LocaleName[331:336],
+	_LocaleName[325:330],
+	_LocaleName[330:336],
 	_LocaleName[336:341],
 	_LocaleName[341:346],
 	_LocaleName[346:351],
@@ -509,6 +512,7 @@ var _LocaleNames = []string{
 	_LocaleName[581:586],
 	_LocaleName[586:591],
 	_LocaleName[591:596],
+	_LocaleName[596:601],
 }
 
 // LocaleString retrieves an enum value from the enum constants string name.

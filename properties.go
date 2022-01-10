@@ -156,6 +156,7 @@ const (
 	LocalearYE                //ar-YE
 	LocalebgBG                //bg-BG
 	LocalebnBD                //bn-BD
+	LocalebnIN                //bn-IN
 	LocalecaES                //ca-ES
 	LocalecsCZ                //cs-CZ
 	LocalecyGB                //cy-GB
