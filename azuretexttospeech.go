@@ -121,7 +121,7 @@ func (az *AzureCSTextToSpeech) Synthesize(speechText string, voicesname string, 
 
 // voiceXML renders the XML payload for the TTS api.
 // For API reference see https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#sample-request
-func voiceXML(speechText, description string, locale Locale, gender Gender) string {
+func voiceXML(speechText, description string, locale string, gender Gender) string {
 	return fmt.Sprintf(ttsApiXMLPayload, locale, locale, gender, description, speechText)
 }
 

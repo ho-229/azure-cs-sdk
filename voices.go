@@ -28,7 +28,7 @@ type RegionVoice struct {
 	ShortName       string    `json:"ShortName"`
 	DisplayName     string    `json:"DisplayName"`
 	Gender          Gender    `json:"Gender"`
-	Locale          Locale    `json:"Locale"`
+	Locale          string    `json:"Locale"`
 	SampleRateHertz string    `json:"SampleRateHertz"`
 	VoiceType       VoiceType `json:"VoiceType"`
 }
