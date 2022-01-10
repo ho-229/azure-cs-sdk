@@ -231,6 +231,7 @@ const (
 	LocalemyMM                // my-MM
 	LocalenbNO                // nb-NO
 	LocalenlBE                // nl-BE
+	LocalekkKZ                // kk-KZ
 	LocalenlNL                // nl-NL
 	LocaleplPL                // pl-PL
 	LocaleptBR                // pt-BR
