@@ -162,107 +162,111 @@ const (
 	LocalecyGB                //cy-GB
 	LocaledaDK                //da-DK
 	LocaledeAT                //de-AT
-	LocaledeCH                // de-CH
-	LocaledeDE                // de-DE
-	LocaleelGR                // el-GR
-	LocaleenAU                // en-AU
-	LocaleenCA                // en-CA
-	LocaleenGB                // en-GB
-	LocaleenHK                // en-HK
-	LocaleenIE                // en-IE
-	LocaleenIN                // en-IN
-	LocaleenKE                // en-KE
-	LocaleenNG                // en-NG
-	LocaleenNZ                // en-NZ
-	LocaleenPH                // en-PH
-	LocaleenSG                // en-SG
-	LocaleenTZ                // en-TZ
-	LocaleenUS                // en-US
-	LocaleenZA                // en-ZA
-	LocaleesAR                // es-AR
-	LocaleesBO                // es-BO
-	LocaleesCL                // es-CL
-	LocaleesCO                // es-CO
-	LocaleesCR                // es-CR
-	LocaleesCU                // es-CU
-	LocaleesDO                // es-DO
-	LocaleesEC                // es-EC
-	LocaleesES                // es-ES
-	LocaleesGQ                // es-GQ
-	LocaleesGT                // es-GT
-	LocaleesHN                // es-HN
-	LocaleesMX                // es-MX
-	LocaleesNI                // es-NI
-	LocaleesPA                // es-PA
-	LocaleesPE                // es-PE
-	LocaleesPR                // es-PR
-	LocaleesPY                // es-PY
-	LocaleesSV                // es-SV
-	LocaleesUS                // es-US
-	LocaleesUY                // es-UY
-	LocaleesVE                // es-VE
-	LocaleetEE                // et-EE
-	LocalefaIR                // fa-IR
-	LocalefiFI                // fi-FI
+	LocaledeCH                //de-CH
+	LocaledeDE                //de-DE
+	LocaleelGR                //el-GR
+	LocaleenAU                //en-AU
+	LocaleenCA                //en-CA
+	LocaleenGB                //en-GB
+	LocaleenHK                //en-HK
+	LocaleenIE                //en-IE
+	LocaleenIN                //en-IN
+	LocaleenKE                //en-KE
+	LocaleenNG                //en-NG
+	LocaleenNZ                //en-NZ
+	LocaleenPH                //en-PH
+	LocaleenSG                //en-SG
+	LocaleenTZ                //en-TZ
+	LocaleenUS                //en-US
+	LocaleenZA                //en-ZA
+	LocaleesAR                //es-AR
+	LocaleesBO                //es-BO
+	LocaleesCL                //es-CL
+	LocaleesCO                //es-CO
+	LocaleesCR                //es-CR
+	LocaleesCU                //es-CU
+	LocaleesDO                //es-DO
+	LocaleesEC                //es-EC
+	LocaleesES                //es-ES
+	LocaleesGQ                //es-GQ
+	LocaleesGT                //es-GT
+	LocaleesHN                //es-HN
+	LocaleesMX                //es-MX
+	LocaleesNI                //es-NI
+	LocaleesPA                //es-PA
+	LocaleesPE                //es-PE
+	LocaleesPR                //es-PR
+	LocaleesPY                //es-PY
+	LocaleesSV                //es-SV
+	LocaleesUS                //es-US
+	LocaleesUY                //es-UY
+	LocaleesVE                //es-VE
+	LocaleetEE                //et-EE
+	LocalefaIR                //fa-IR
+	LocalefiFI                //fi-FI
 	LocalefilPH               // fil-PH
-	LocalefrBE                // fr-BE
-	LocalefrCA                // fr-CA
-	LocalefrCH                // fr-CH
-	LocalefrFR                // fr-FR
-	LocalegaIE                // ga-IE
-	LocaleglES                // gl-ES
-	LocaleguIN                // gu-IN
-	LocaleheIL                // he-IL
-	LocalehiIN                // hi-IN
-	LocalehrHR                // hr-HR
-	LocalehuHU                // hu-HU
-	LocaleidID                // id-ID
-	LocaleisIS                // is-IS
-	LocaleitIT                // it-IT
-	LocalejaJP                // ja-JP
-	LocalejvID                // jv-ID
-	LocalekmKH                // km-KH
-	LocalekoKR                // ko-KR
-	LocaleltLT                // lt-LT
-	LocalelvLV                // lv-LV
-	LocalemrIN                // mr-IN
-	LocalemsMY                // ms-MY
-	LocalemtMT                // mt-MT
-	LocalemyMM                // my-MM
-	LocalenbNO                // nb-NO
-	LocalenlBE                // nl-BE
-	LocalekkKZ                // kk-KZ
-	LocalenlNL                // nl-NL
-	LocaleplPL                // pl-PL
-	LocaleptBR                // pt-BR
-	LocaleptPT                // pt-PT
-	LocaleroRO                // ro-RO
-	LocaleruRU                // ru-RU
-	LocaleskSK                // sk-SK
-	LocaleslSI                // sl-SI
-	LocalesoSO                // so-SO
-	LocalesuID                // su-ID
-	LocalesvSE                // sv-SE
-	LocaleswKE                // sw-KE
-	LocaleswTZ                // sw-TZ
-	LocaletaIN                // ta-IN
-	LocaletaLK                // ta-LK
-	LocaletaSG                // ta-SG
-	LocaleteIN                // te-IN
-	LocalethTH                // th-TH
-	LocaletrTR                // tr-TR
-	LocaleukUA                // uk-UA
-	LocaleurIN                // ur-IN
-	LocaleurPK                // ur-PK
-	LocaleuzUZ                // uz-UZ
-	LocaleviVN                // vi-VN
-	LocalezhCN                // zh-CN
-	LocalezhHK                // zh-HK
-	LocalezhTW                // zh-TW
-	LocalezuZA                // zu-ZA
-	LocaleknIN                // kn-IN
-	LocaleloLA                // lo-LA
-	LocalemkMK                // mk-MK
+	LocalefrBE                //fr-BE
+	LocalefrCA                //fr-CA
+	LocalefrCH                //fr-CH
+	LocalefrFR                //fr-FR
+	LocalegaIE                //ga-IE
+	LocaleglES                //gl-ES
+	LocaleguIN                //gu-IN
+	LocaleheIL                //he-IL
+	LocalehiIN                //hi-IN
+	LocalehrHR                //hr-HR
+	LocalehuHU                //hu-HU
+	LocaleidID                //id-ID
+	LocaleisIS                //is-IS
+	LocaleitIT                //it-IT
+	LocalejaJP                //ja-JP
+	LocalejvID                //jv-ID
+	LocalekkKZ                //kk-KZ
+	LocalekmKH                //km-KH
+	LocaleknIN                //kn-IN
+	LocalekoKR                //ko-KR
+	LocaleloLA                //lo-LA
+	LocaleltLT                //lt-LT
+	LocalelvLV                //lv-LV
+	LocalemkMK                //mk-MK
+	LocalemlIN                //ml-IN
+	LocalemrIN                //mr-IN
+	LocalemsMY                //ms-MY
+	LocalemtMT                //mt-MT
+	LocalemyMM                //my-MM
+	LocalenbNO                //nb-NO
+	LocalenlBE                //nl-BE
+	LocalenlNL                //nl-NL
+	LocaleplPL                //pl-PL
+	LocalepsAF                //ps-AF
+	LocaleptBR                //pt-BR
+	LocaleptPT                //pt-PT
+	LocaleroRO                //ro-RO
+	LocaleruRU                //ru-RU
+	LocalesiLK                //si-LK
+	LocaleskSK                //sk-SK
+	LocaleslSI                //sl-SI
+	LocalesoSO                //so-SO
+	LocalesrRS                //sr-RS
+	LocalesuID                //su-ID
+	LocalesvSE                //sv-SE
+	LocaleswKE                //sw-KE
+	LocaleswTZ                //sw-TZ
+	LocaletaIN                //ta-IN
+	LocaletaLK                //ta-LK
+	LocaletaSG                //ta-SG
+	LocaleteIN                //te-IN
+	LocalethTH                //th-TH
+	LocaletrTR                //tr-TR
+	LocaleukUA                //uk-UA
+	LocaleurIN                //ur-IN
+	LocaleurPK                //ur-PK
+	LocaleuzUZ                //uz-UZ
+	LocaleviVN                //vi-VN
+	LocalezhCN                //zh-CN
+	LocalezhHK                //zh-HK
+	LocalezhTW                //zh-TW
+	LocalezuZA                //zu-ZA
 )
 
 // Region references the locations of the availability of standard voices.
