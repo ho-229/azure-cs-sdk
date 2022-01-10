@@ -90,10 +90,10 @@ func (az *AzureCSTextToSpeech) fetchVoiceList() ([]RegionVoice, error) {
 	switch res.StatusCode {
 	case http.StatusOK:
 		var r []RegionVoice
+		spew.Dump(res.Bytes())
 		if err := json.Unmarshal(res.Bytes(), &r); err != nil {
 			return nil, fmt.Errorf("unable to decode voice list response body, %v", err)
 		}
-		spew.Dump(r)
 		return r, nil
 	case http.StatusBadRequest:
 		return nil, fmt.Errorf("%d - A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long", res.StatusCode)
