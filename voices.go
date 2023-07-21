@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/davecgh/go-spew/spew"
 	"gopkg.in/h2non/gentleman.v2"
 	"gopkg.in/h2non/gentleman.v2/plugins/proxy"
 	gtls "gopkg.in/h2non/gentleman.v2/plugins/tls"
@@ -22,7 +21,26 @@ type VoiceType int
 const (
 	VoiceStandard VoiceType = iota // Standard
 	VoiceNeural                    // Neural
+	VoiceNeutral                   // Neutral
 )
+
+/*
+
+{
+    "Name": "Microsoft Server Speech Text to Speech Voice (it-IT, ElsaNeural)",
+    "DisplayName": "Elsa",
+    "LocalName": "Elsa",
+    "ShortName": "it-IT-ElsaNeural",
+    "Gender": "Female",
+    "Locale": "it-IT",
+    "LocaleName": "Italian (Italy)",
+    "SampleRateHertz": "48000",
+    "VoiceType": "Neural",
+    "Status": "GA",
+    "WordsPerMinute": "148"
+  },
+
+*/
 
 type RegionVoice struct {
 	Name            string    `json:"Name"`
@@ -91,7 +109,7 @@ func (az *AzureCSTextToSpeech) fetchVoiceList() ([]RegionVoice, error) {
 	case http.StatusOK:
 		var r []RegionVoice
 
-		spew.Dump(res)
+		//spew.Dump(res)
 		if err := json.Unmarshal(res.Bytes(), &r); err != nil {
 			return nil, fmt.Errorf("unable to decode voice list response body, %v", err)
 		}
