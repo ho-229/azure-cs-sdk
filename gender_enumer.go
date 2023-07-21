@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _GenderName = "MaleFemaleGenderNeutral"
+const _GenderName = "MaleFemaleNeutral"
 
-var _GenderIndex = [...]uint8{0, 4, 10, 23}
+var _GenderIndex = [...]uint8{0, 4, 10, 17}
 
-const _GenderLowerName = "malefemalegenderneutral"
+const _GenderLowerName = "malefemaleneutral"
 
 func (i Gender) String() string {
 	if i < 0 || i >= Gender(len(_GenderIndex)-1) {
@@ -37,14 +37,14 @@ var _GenderNameToValueMap = map[string]Gender{
 	_GenderLowerName[0:4]:   GenderMale,
 	_GenderName[4:10]:       GenderFemale,
 	_GenderLowerName[4:10]:  GenderFemale,
-	_GenderName[10:23]:      GenderNeutral,
-	_GenderLowerName[10:23]: GenderNeutral,
+	_GenderName[10:17]:      GenderNeutral,
+	_GenderLowerName[10:17]: GenderNeutral,
 }
 
 var _GenderNames = []string{
 	_GenderName[0:4],
 	_GenderName[4:10],
-	_GenderName[10:23],
+	_GenderName[10:17],
 }
 
 // GenderString retrieves an enum value from the enum constants string name.
