@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/davecgh/go-spew/spew"
 	"gopkg.in/h2non/gentleman.v2"
 	"gopkg.in/h2non/gentleman.v2/plugins/proxy"
 	gtls "gopkg.in/h2non/gentleman.v2/plugins/tls"
@@ -89,6 +90,8 @@ func (az *AzureCSTextToSpeech) fetchVoiceList() ([]RegionVoice, error) {
 	switch res.StatusCode {
 	case http.StatusOK:
 		var r []RegionVoice
+
+		spew.Dump(res)
 		if err := json.Unmarshal(res.Bytes(), &r); err != nil {
 			return nil, fmt.Errorf("unable to decode voice list response body, %v", err)
 		}
