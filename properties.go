@@ -130,6 +130,7 @@ const (
 	// See Gender in https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#standard-voices for breakdown
 	GenderMale   Gender = iota // Male
 	GenderFemale               // Female
+	GenderNeutral 
 )
 
 // Locale references the language or locale for text-to-speech.

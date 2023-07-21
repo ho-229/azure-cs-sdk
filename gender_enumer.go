@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _GenderName = "MaleFemale"
+const _GenderName = "MaleFemaleGenderNeutral"
 
-var _GenderIndex = [...]uint8{0, 4, 10}
+var _GenderIndex = [...]uint8{0, 4, 10, 23}
 
-const _GenderLowerName = "malefemale"
+const _GenderLowerName = "malefemalegenderneutral"
 
 func (i Gender) String() string {
 	if i < 0 || i >= Gender(len(_GenderIndex)-1) {
@@ -27,20 +27,24 @@ func _GenderNoOp() {
 	var x [1]struct{}
 	_ = x[GenderMale-(0)]
 	_ = x[GenderFemale-(1)]
+	_ = x[GenderNeutral-(2)]
 }
 
-var _GenderValues = []Gender{GenderMale, GenderFemale}
+var _GenderValues = []Gender{GenderMale, GenderFemale, GenderNeutral}
 
 var _GenderNameToValueMap = map[string]Gender{
-	_GenderName[0:4]:       GenderMale,
-	_GenderLowerName[0:4]:  GenderMale,
-	_GenderName[4:10]:      GenderFemale,
-	_GenderLowerName[4:10]: GenderFemale,
+	_GenderName[0:4]:        GenderMale,
+	_GenderLowerName[0:4]:   GenderMale,
+	_GenderName[4:10]:       GenderFemale,
+	_GenderLowerName[4:10]:  GenderFemale,
+	_GenderName[10:23]:      GenderNeutral,
+	_GenderLowerName[10:23]: GenderNeutral,
 }
 
 var _GenderNames = []string{
 	_GenderName[0:4],
 	_GenderName[4:10],
+	_GenderName[10:23],
 }
 
 // GenderString retrieves an enum value from the enum constants string name.
