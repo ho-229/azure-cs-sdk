@@ -17,9 +17,10 @@ func TestFetchVoiceList(t *testing.T) {
 	defer ts.Close()
 
 	az := &AzureCSTextToSpeech{
-		SubscriptionKey:     "SYS64738",
+		subscriptionKey:     "SYS64738",
 		accessToken:         "SYS49152",
 		voiceServiceListURL: ts.URL,
+		client:              http.DefaultClient,
 	}
 	vl, err := az.fetchVoiceList()
 	if err != nil {

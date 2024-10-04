@@ -3,12 +3,10 @@ package azuretexttospeech
 import (
 	"bytes"
 	"context"
-	"crypto/tls"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
-	"net/url"
 	"time"
 )
 
@@ -20,7 +18,10 @@ const tokenRefreshAPI = "https://%s.api.cognitive.microsoft.com/sts/v1.0/issueTo
 const synthesizeActionTimeout = time.Second * 30
 
 // tokenRefreshTimeout is the amount of time the http client will wait during the token refresh action.
-const tokenRefreshTimeout = time.Second * 15
+const tokenRefreshTimeout = time.Second * 10
+
+// tokenRefreshInterval is the amount of time between token refreshes
+const tokenRefreshInterval = time.Hour
 
 // TTSApiXMLPayload templates the payload required for API.
 // See: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#sample-request
@@ -32,23 +33,22 @@ const tokenRefreshTimeout = time.Second * 15
 
 const ttsApiXMLPayload = "<speak version='1.0' xml:lang='%s'><voice xml:lang='%s' xml:gender='%s' name='%s'>%s</voice></speak>"
 
-const ttsApiXMLPayload2 = "<speak xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xmlns:emo='http://www.w3.org/2009/10/emotionml' version='1.0' xml:lang='%s'><voice name='%s'>%s</voice></speak>"
+// const ttsApiXMLPayload2 = "<speak xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts' xmlns:emo='http://www.w3.org/2009/10/emotionml' version='1.0' xml:lang='%s'><voice name='%s'>%s</voice></speak>"
 
-func (az *AzureCSTextToSpeech) GetVoicesMap() (RegionVoiceMap, error) {
-	return az.RegionVoiceMap, nil
+func (az *AzureCSTextToSpeech) GetVoicesMap() RegionVoiceMap {
+	return az.regionVoiceMap
 }
 
 // SynthesizeWithContext returns a bytestream of the rendered text-to-speech in the target audio format. `speechText` is the string of
 // text in which a user wishes to Synthesize, `region` is the language/locale, `gender` is the desired output voice
 // and `audioOutput` captures the audio format.
-func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, voicesname string, audioOutput AudioOutput) ([]byte, error) {
-
-	vmap, ok := az.RegionVoiceMap[voicesname]
+func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speechText string, voicesName string, audioOutput AudioOutput) ([]byte, error) {
+	vmap, ok := az.regionVoiceMap[voicesName]
 	if !ok {
-		return nil, fmt.Errorf("unable to locate RegionVoiceMap{voice.ShortName=%s}", voicesname)
+		return nil, fmt.Errorf("unable to locate RegionVoiceMap{voice.ShortName=%s}", voicesName)
 	}
 
-	v := voiceXML(speechText, voicesname, vmap.Locale, vmap.Gender)
+	v := voiceXML(speechText, voicesName, vmap.Locale, vmap.Gender)
 
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, bytes.NewBufferString(v))
 	if err != nil {
@@ -59,31 +59,7 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 	request.Header.Set("Authorization", "Bearer "+az.accessToken)
 	request.Header.Set("User-Agent", "azuretts")
 
-	//client := &http.Client{}
-
-	var client *http.Client
-
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-
-	if az.HttpProxy != "" {
-		proxyURL, err := url.Parse(az.HttpProxy)
-		if err != nil {
-			return nil, err
-		}
-
-		tr.Proxy = http.ProxyURL(proxyURL)
-		//transport := &http.Transport{Proxy: http.ProxyURL(proxyURL)}
-		client = &http.Client{Transport: tr}
-
-	} else {
-
-		client = &http.Client{Transport: tr}
-		//client = &http.Client{}
-	}
-
-	response, err := client.Do(request.WithContext(ctx))
+	response, err := az.client.Do(request.WithContext(ctx))
 	if err != nil {
 		return nil, err
 	}
@@ -94,7 +70,7 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 	switch response.StatusCode {
 	case http.StatusOK:
 		// The request was successful; the response body is an audio file.
-		return ioutil.ReadAll(response.Body)
+		return io.ReadAll(response.Body)
 	case http.StatusBadRequest:
 		return nil, fmt.Errorf("%d - A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long", response.StatusCode)
 	case http.StatusUnauthorized:
@@ -130,43 +106,23 @@ func voiceXML(speechText, description string, locale string, gender Gender) stri
 // https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-apis#authentication .
 // Note: This does not need to be called by a client, since this automatically runs via a background go-routine (`startRefresher`)
 func (az *AzureCSTextToSpeech) refreshToken() error {
+	ctx, cancel := context.WithTimeout(context.Background(), tokenRefreshTimeout)
+	defer cancel()
 
-	request, _ := http.NewRequest(http.MethodPost, az.tokenRefreshURL, nil)
-	request.Header.Set("Ocp-Apim-Subscription-Key", az.SubscriptionKey)
+	request, _ := http.NewRequestWithContext(ctx, http.MethodPost, az.tokenRefreshURL, nil)
+	request.Header.Set("Ocp-Apim-Subscription-Key", az.subscriptionKey)
 
-	var client *http.Client
-
-	tr := &http.Transport{
-		TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
-	}
-
-	if az.HttpProxy != "" {
-		proxyURL, err := url.Parse(az.HttpProxy)
-		if err != nil {
-			return err
-		}
-
-		tr.Proxy = http.ProxyURL(proxyURL)
-		//transport := &http.Transport{Proxy: http.ProxyURL(proxyURL)}
-		client = &http.Client{Transport: tr}
-
-	} else {
-
-		client = &http.Client{Transport: tr}
-		//client = &http.Client{}
-	}
-
-	response, err := client.Do(request)
+	res, err := az.client.Do(request)
 	if err != nil {
 		return err
 	}
-	defer response.Body.Close()
+	defer res.Body.Close()
 
-	if response.StatusCode != http.StatusOK {
-		return fmt.Errorf("unexpected status code; received http status=%s", response.Status)
+	if res.StatusCode != http.StatusOK {
+		return fmt.Errorf("unexpected status code; received http status=%s", res.Status)
 	}
 
-	body, _ := ioutil.ReadAll(response.Body)
+	body, _ := io.ReadAll(res.Body)
 	az.accessToken = string(body)
 	return nil
 }
@@ -176,7 +132,7 @@ func (az *AzureCSTextToSpeech) refreshToken() error {
 func (az *AzureCSTextToSpeech) startRefresher() chan bool {
 	done := make(chan bool, 1)
 	go func() {
-		ticker := time.NewTicker(time.Minute * 9)
+		ticker := time.NewTicker(tokenRefreshInterval)
 		defer ticker.Stop()
 		for {
 			select {
@@ -196,20 +152,24 @@ func (az *AzureCSTextToSpeech) startRefresher() chan bool {
 // AzureCSTextToSpeech stores configuration and state information for the TTS client.
 type AzureCSTextToSpeech struct {
 	accessToken         string // is the auth token received from `TokenRefreshAPI`. Used in the Authorization: Bearer header.
-	RegionVoiceMap      RegionVoiceMap
-	SubscriptionKey     string    // API key for Azure's Congnitive Speech services
-	TokenRefreshDoneCh  chan bool // channel to stop the token refresh goroutine.
+	regionVoiceMap      RegionVoiceMap
+	subscriptionKey     string    // API key for Azure's Congnitive Speech services
+	tokenRefreshDoneCh  chan bool // channel to stop the token refresh goroutine.
 	tokenRefreshURL     string
 	voiceServiceListURL string
 	textToSpeechURL     string
-	HttpProxy           string
+	client              *http.Client
 }
 
 // New returns an AzureCSTextToSpeech object.
-func New(subscriptionKey string, region Region, proxy string) (*AzureCSTextToSpeech, error) {
+func New(subscriptionKey string, region Region) (*AzureCSTextToSpeech, func(), error) {
+	return NewWithClient(http.DefaultClient, subscriptionKey, region)
+}
+
+func NewWithClient(client *http.Client, subscriptionKey string, region Region) (*AzureCSTextToSpeech, func(), error) {
 	az := &AzureCSTextToSpeech{
-		SubscriptionKey: subscriptionKey,
-		HttpProxy:       proxy,
+		subscriptionKey: subscriptionKey,
+		client:          client,
 	}
 
 	az.textToSpeechURL = fmt.Sprintf(textToSpeechAPI, region)
@@ -219,16 +179,19 @@ func New(subscriptionKey string, region Region, proxy string) (*AzureCSTextToSpe
 	// api requires that the token is refreshed every 10 mintutes.
 	// We will do this task in the background every ~9 minutes.
 	if err := az.refreshToken(); err != nil {
-		return nil, fmt.Errorf("failed to fetch initial token, %v", err)
+		return nil, nil, fmt.Errorf("failed to fetch initial token, %v", err)
 	}
 
 	m, err := az.buildVoiceToRegionMap()
 	if err != nil {
-		return nil, fmt.Errorf("unable to fetch voice-map, %v", err)
+		return nil, nil, fmt.Errorf("unable to fetch voice-map, %v", err)
 	}
 
-	az.RegionVoiceMap = m
+	az.regionVoiceMap = m
 
-	az.TokenRefreshDoneCh = az.startRefresher()
-	return az, nil
+	az.tokenRefreshDoneCh = az.startRefresher()
+	cleanup := func() {
+		close(az.tokenRefreshDoneCh)
+	}
+	return az, cleanup, nil
 }

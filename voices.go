@@ -1,14 +1,9 @@
 package azuretexttospeech
 
 import (
-	"crypto/tls"
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"gopkg.in/h2non/gentleman.v2"
-	"gopkg.in/h2non/gentleman.v2/plugins/proxy"
-	gtls "gopkg.in/h2non/gentleman.v2/plugins/tls"
 )
 
 // voiceListAPI is the source for supported voice list to region mapping
@@ -43,20 +38,18 @@ const (
 */
 
 type RegionVoice struct {
-	Name            string    `json:"Name"`
-	ShortName       string    `json:"ShortName"`
-	DisplayName     string    `json:"DisplayName"`
-	Gender          Gender    `json:"Gender"`
-	Locale          string    `json:"Locale"`
-	SampleRateHertz string    `json:"SampleRateHertz"`
-	VoiceType       VoiceType `json:"VoiceType"`
+	Name                string    `json:"Name"`
+	DisplayName         string    `json:"DisplayName"`
+	LocalName           string    `json:"LocalName"`
+	ShortName           string    `json:"ShortName"`
+	Gender              Gender    `json:"Gender"`
+	Locale              string    `json:"Locale"`
+	SampleRateHertz     string    `json:"SampleRateHertz"`
+	SecondaryLocaleList []string  `json:"SecondaryLocaleList"`
+	VoiceType           VoiceType `json:"VoiceType"`
+	RolePlayList        []string  `json:"RolePlayList"`
+	WordsPerMinute      string    `json:"WordsPerMinute"`
 }
-
-// // SupportedVoices represents the key used within the `localeToGender` map.
-// type SupportedVoices struct {
-
-//  	Locale Locale
-// }
 
 type RegionVoiceMap map[string]RegionVoice
 
@@ -75,33 +68,12 @@ func (az *AzureCSTextToSpeech) buildVoiceToRegionMap() (RegionVoiceMap, error) {
 }
 
 func (az *AzureCSTextToSpeech) fetchVoiceList() ([]RegionVoice, error) {
-
-	// Create a new client
-	cli := gentleman.New()
-
-	// Define base URL
-	cli.URL(az.voiceServiceListURL)
-
-	if az.HttpProxy != "" {
-
-		servers := map[string]string{"http": az.HttpProxy, "https": az.HttpProxy}
-		cli.Use(proxy.Set(servers))
-	}
-
-	cli.Use(gtls.Config(&tls.Config{InsecureSkipVerify: true}))
-
-	// Create a new request based on the current client
-	req := cli.Request()
-
-	// Set a new header field
-	req.SetHeader("Authorization", "Bearer "+az.accessToken)
+	req, _ := http.NewRequest(http.MethodGet, az.voiceServiceListURL, nil)
+	req.Header.Set("Authorization", "Bearer "+az.accessToken)
 
 	// Perform the request
-	res, err := req.Send()
+	res, err := az.client.Do(req)
 	if err != nil {
-		return nil, err
-	}
-	if !res.Ok {
 		return nil, err
 	}
 
@@ -109,8 +81,7 @@ func (az *AzureCSTextToSpeech) fetchVoiceList() ([]RegionVoice, error) {
 	case http.StatusOK:
 		var r []RegionVoice
 
-		//spew.Dump(res)
-		if err := json.Unmarshal(res.Bytes(), &r); err != nil {
+		if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
 			return nil, fmt.Errorf("unable to decode voice list response body, %v", err)
 		}
 		return r, nil
