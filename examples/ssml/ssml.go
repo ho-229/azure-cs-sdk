@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"encoding/xml"
 	"fmt"
 	"os"
 
 	tts "github.com/ho-229/azuretexttospeech"
+	"github.com/ho-229/azuretexttospeech/ssml"
 )
 
 func exit(err error) {
@@ -15,6 +17,7 @@ func exit(err error) {
 	}
 	os.Exit(0)
 }
+
 func main() {
 	// create a key for "Cognitive Services" (kind=SpeechServices). Once the key is available
 	// in the Azure portal, push it into an environment variable (export AZUREKEY=SYS64738).
@@ -35,14 +38,26 @@ func main() {
 	}
 	defer cleanup()
 
-	// Digitize a text string using the enUS locale, female voice and specify the
-	// audio format of a 16Khz, 32kbit mp3 file.
+	voice := ssml.NewVoice("zh-CN-XiaomoNeural")
+	voice.Child = []xml.Token{
+		ssml.ExpressAs{
+			Style: "calm",
+			Role:  "YoungAdultFemale",
+			Child: "女儿看见父亲走了进来，问道：您来的挺快的，怎么过来的？父亲放下手提包，说。",
+		},
+		ssml.ExpressAs{
+			Style: "calm",
+			Role:  "OlderAdultMale",
+			Child: "刚打车过来的，路上还挺顺畅。",
+		},
+	}
+
 	ctx := context.Background()
-	b, err := az.SynthesizeWithContext(
+	b, err := az.SynthesizeSsmlWithContext(
 		ctx,
-		"64 BASIC BYTES FREE. READY.",
-		"en-US-JennyNeural",
-		tts.AUDIO16khz32kbitrateMonoMP3)
+		voice,
+		tts.AUDIO16khz32kbitrateMonoMP3,
+	)
 
 	if err != nil {
 		exit(fmt.Errorf("unable to synthesize, received: %v", err))
