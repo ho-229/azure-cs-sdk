@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	tts "github.com/gmaisto/azuretexttospeech"
+	tts "github.com/ho-229/azuretexttospeech"
 )
 
 func exit(err error) {
