@@ -24,7 +24,8 @@ const synthesizeActionTimeout = time.Second * 30
 const tokenRefreshTimeout = time.Second * 10
 
 // tokenRefreshInterval is the amount of time between token refreshes
-const tokenRefreshInterval = time.Hour
+// ref: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/rest-text-to-speech?tabs=streaming#how-to-use-an-access-token
+const tokenRefreshInterval = time.Minute * 9
 
 func (az *AzureCSTextToSpeech) GetVoicesMap() RegionVoiceMap {
 	return az.regionVoiceMap
