@@ -16,7 +16,7 @@ type VoiceType int
 const (
 	VoiceStandard VoiceType = iota // Standard
 	VoiceNeural                    // Neural
-	VoiceNeuralHD                  // NeuralHD (Previews)
+	VoiceNeuralHD                  // NeuralHD
 	VoiceNeutral                   // Neutral
 )
 

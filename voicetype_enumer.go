@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _VoiceTypeName = "StandardNeuralNeuralHD (Previews)Neutral"
+const _VoiceTypeName = "StandardNeuralNeuralHDNeutral"
 
-var _VoiceTypeIndex = [...]uint8{0, 8, 14, 33, 40}
+var _VoiceTypeIndex = [...]uint8{0, 8, 14, 22, 29}
 
-const _VoiceTypeLowerName = "standardneuralneuralhd (previews)neutral"
+const _VoiceTypeLowerName = "standardneuralneuralhdneutral"
 
 func (i VoiceType) String() string {
 	if i < 0 || i >= VoiceType(len(_VoiceTypeIndex)-1) {
@@ -38,17 +38,17 @@ var _VoiceTypeNameToValueMap = map[string]VoiceType{
 	_VoiceTypeLowerName[0:8]:   VoiceStandard,
 	_VoiceTypeName[8:14]:       VoiceNeural,
 	_VoiceTypeLowerName[8:14]:  VoiceNeural,
-	_VoiceTypeName[14:33]:      VoiceNeuralHD,
-	_VoiceTypeLowerName[14:33]: VoiceNeuralHD,
-	_VoiceTypeName[33:40]:      VoiceNeutral,
-	_VoiceTypeLowerName[33:40]: VoiceNeutral,
+	_VoiceTypeName[14:22]:      VoiceNeuralHD,
+	_VoiceTypeLowerName[14:22]: VoiceNeuralHD,
+	_VoiceTypeName[22:29]:      VoiceNeutral,
+	_VoiceTypeLowerName[22:29]: VoiceNeutral,
 }
 
 var _VoiceTypeNames = []string{
 	_VoiceTypeName[0:8],
 	_VoiceTypeName[8:14],
-	_VoiceTypeName[14:33],
-	_VoiceTypeName[33:40],
+	_VoiceTypeName[14:22],
+	_VoiceTypeName[22:29],
 }
 
 // VoiceTypeString retrieves an enum value from the enum constants string name.
