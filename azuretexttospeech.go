@@ -47,9 +47,14 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 
 // Synthesize directs to SynthesizeWithContext. A new context.Withtimeout is created with the timeout as defined by synthesizeActionTimeout
 func (az *AzureCSTextToSpeech) Synthesize(speechText string, voiceName string, audioOutput AudioOutput) ([]byte, error) {
+	var escapedBuffer bytes.Buffer
+	if err := xml.EscapeText(&escapedBuffer, []byte(speechText)); err != nil {
+		return nil, err
+	}
+
 	ctx, cancel := context.WithTimeout(context.Background(), synthesizeActionTimeout)
 	defer cancel()
-	return az.SynthesizeWithContext(ctx, speechText, voiceName, audioOutput)
+	return az.SynthesizeWithContext(ctx, escapedBuffer.String(), voiceName, audioOutput)
 }
 
 // SynthesizeSsmlWithContext returns a bytestream of the rendered text-to-speech in the target audio format.
