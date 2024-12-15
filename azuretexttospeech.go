@@ -32,6 +32,13 @@ func (az *AzureCSTextToSpeech) GetVoicesMap() RegionVoiceMap {
 	return az.regionVoiceMap
 }
 
+// Synthesize directs to SynthesizeWithContext. A new context.Withtimeout is created with the timeout as defined by synthesizeActionTimeout
+func (az *AzureCSTextToSpeech) Synthesize(speechText string, voiceName string, audioOutput AudioOutput) ([]byte, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), synthesizeActionTimeout)
+	defer cancel()
+	return az.SynthesizeWithContext(ctx, speechText, voiceName, audioOutput)
+}
+
 // SynthesizeWithContext returns a bytestream of the rendered text-to-speech in the target audio format. `speechText` is the string of
 // text in which a user wishes to Synthesize, `region` is the language/locale, `gender` is the desired output voice
 // and `audioOutput` captures the audio format.
@@ -40,22 +47,15 @@ func (az *AzureCSTextToSpeech) SynthesizeWithContext(ctx context.Context, speech
 		return nil, fmt.Errorf("voice name %s is not found in the voice map", voiceName)
 	}
 
-	voice := ssml.NewVoice(voiceName)
-	voice.Child = speechText
-
-	return az.SynthesizeSsmlWithContext(ctx, voice, audioOutput)
-}
-
-// Synthesize directs to SynthesizeWithContext. A new context.Withtimeout is created with the timeout as defined by synthesizeActionTimeout
-func (az *AzureCSTextToSpeech) Synthesize(speechText string, voiceName string, audioOutput AudioOutput) ([]byte, error) {
 	var escapedBuffer bytes.Buffer
 	if err := xml.EscapeText(&escapedBuffer, []byte(speechText)); err != nil {
 		return nil, err
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), synthesizeActionTimeout)
-	defer cancel()
-	return az.SynthesizeWithContext(ctx, escapedBuffer.String(), voiceName, audioOutput)
+	voice := ssml.NewVoice(voiceName)
+	voice.Child = escapedBuffer.String()
+
+	return az.SynthesizeSsmlWithContext(ctx, voice, audioOutput)
 }
 
 // SynthesizeSsmlWithContext returns a bytestream of the rendered text-to-speech in the target audio format.
