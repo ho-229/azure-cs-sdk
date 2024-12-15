@@ -8,6 +8,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/ho-229/azuretexttospeech/ssml"
@@ -72,11 +73,21 @@ func (az *AzureCSTextToSpeech) SynthesizeSsmlWithContext(
 		return nil, err
 	}
 
-	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, bytes.NewBuffer(reqBody))
+	return az.SynthesizeRawSsmlWithContext(ctx, string(reqBody), audioOutput)
+}
+
+// SynthesizeRawSsmlWithContext returns a bytestream of the rendered text-to-speech in the target audio format.
+// `ctx` is the context in which the request is made, `ssml` is the SSML payload, and `audioOutput` captures the audio format.
+func (az *AzureCSTextToSpeech) SynthesizeRawSsmlWithContext(
+	ctx context.Context,
+	ssml string,
+	audioOutput AudioOutput,
+) ([]byte, error) {
+	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, strings.NewReader(ssml))
 	if err != nil {
 		return nil, err
 	}
-	request.Header.Set("X-Microsoft-OutputFormat", fmt.Sprint(audioOutput))
+	request.Header.Set("X-Microsoft-OutputFormat", audioOutput.String())
 	request.Header.Set("Content-Type", "application/ssml+xml")
 	request.Header.Set("Authorization", "Bearer "+az.accessToken)
 	request.Header.Set("User-Agent", "azuretts")
