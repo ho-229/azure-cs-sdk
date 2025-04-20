@@ -4,7 +4,7 @@ import (
 	"encoding/xml"
 	"testing"
 
-	"github.com/ho-229/azuretexttospeech/ssml"
+	"github.com/ho-229/azure-cs-sdk/ssml"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -13,7 +13,7 @@ func Test_speak(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	assert.Equal(t, `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" lang="en-US"></speak>`, string(b))
+	assert.Equal(t, `<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xml:lang="en-US"></speak>`, string(b))
 }
 
 func Test_multipleExpressAs(t *testing.T) {

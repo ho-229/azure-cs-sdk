@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"os"
 
-	tts "github.com/ho-229/azuretexttospeech"
-	"github.com/ho-229/azuretexttospeech/ssml"
+	azure "github.com/ho-229/azure-cs-sdk"
+	"github.com/ho-229/azure-cs-sdk/ssml"
 )
 
 func exit(err error) {
@@ -23,20 +23,24 @@ func main() {
 	// in the Azure portal, push it into an environment variable (export AZUREKEY=SYS64738).
 	// By default the free tier keys are served out of West US2
 	var apiKey string
-	var region tts.Region
+	var region azure.Region
 	if apiKey = os.Getenv("AZUREKEY"); apiKey == "" {
 		exit(fmt.Errorf("please set your AZUREKEY environment variable"))
 	}
 	var err error
-	if region, err = tts.RegionString(os.Getenv("AZUREREGION")); err != nil {
+	if region, err = azure.RegionString(os.Getenv("AZUREREGION")); err != nil {
 		exit(fmt.Errorf("please set your AZUREREGION environment variable"))
 	}
 
-	az, cleanup, err := tts.New(apiKey, region)
+	az, cleanup, err := azure.New(apiKey, region)
 	if err != nil {
 		exit(fmt.Errorf("failed to create new client, received %v", err))
 	}
 	defer cleanup()
+	tts, err := az.NewTTS()
+	if err != nil {
+		exit(fmt.Errorf("failed to create new TTS client, received %v", err))
+	}
 
 	voice := ssml.NewVoice("zh-CN-XiaomoNeural")
 	voice.Child = []xml.Token{
@@ -53,10 +57,10 @@ func main() {
 	}
 
 	ctx := context.Background()
-	b, err := az.SynthesizeSsmlWithContext(
+	b, err := tts.SynthesizeSsmlWithContext(
 		ctx,
 		voice,
-		tts.AUDIO16khz32kbitrateMonoMP3,
+		azure.AUDIO16khz32kbitrateMonoMP3,
 	)
 
 	if err != nil {

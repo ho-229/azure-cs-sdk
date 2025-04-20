@@ -1,4 +1,4 @@
-package azuretexttospeech
+package azure_cs_sdk
 
 // AudioOutput types represent the supported audio encoding formats for the text-to-speech endpoint.
 // This type is required when requesting to azuretexttospeech.Synthesize text-to-speed request.

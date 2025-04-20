@@ -1,4 +1,4 @@
-module github.com/ho-229/azuretexttospeech
+module github.com/ho-229/azure-cs-sdk
 
 go 1.21
 

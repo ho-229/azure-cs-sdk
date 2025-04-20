@@ -1,8 +1,8 @@
-# AzureTextToSpeech Client #
+# Azure Cognitive Service Go Client #
 
 > This is a fork of https://github.com/gmaisto/azuretexttospeech.
 
-![Execute Test Cases](https://github.com/ho-229/azuretexttospeech/workflows/Execute%20Test%20Cases/badge.svg)
+![Execute Test Cases](https://github.com/ho-229/azure-cs-sdk/workflows/Execute%20Test%20Cases/badge.svg)
 
 This package provides a client for Azure's Cognitive Services (speech services) Text To Speech API. Users of the client
 can specify the voice name (e.g. "en-US-AvaMultilingualNeural"), check [supported voice](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=tts#prebuilt-neural-voices) for all available voices. The library fetches the audio rendered in the format of your choice (see `AudioOutput` types for supported formats).
@@ -21,7 +21,7 @@ A Cognitive Services (kind=Speech Services) API key is required to access the UR
 The following will synthesize the string `64 BASIC BYTES FREE. READY.`, using the en-US locale, rending with `en-US-JennyNeural`. The output file format is a 16khz 32kbit single channel MP3 audio file.
 
 ```golang
-import tts "github.com/ho-229/azuretexttospeech"
+import tts "github.com/ho-229/azure-cs-sdk"
 func main() {
     // See TextToSpeechAPI and TokenRefreshAPI types for list of endpoints and regions.
     azureSpeech, cleanup, _ := tts.New("YOUR-API-KEY", tts.RegionEastUS)
