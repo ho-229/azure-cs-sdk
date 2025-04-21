@@ -5,10 +5,10 @@ package azure_cs_sdk
 // Each incorporates a bitrate and encoding type. The Speech service supports 24 kHz, 16 kHz, and 8 kHz audio outputs.
 // See: https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/rest-text-to-speech#audio-outputs
 
-type AudioOutput int
+type AudioType int
 
 const (
-	RAW16khz16bitMonoPCM AudioOutput = iota
+	RAW16khz16bitMonoPCM AudioType = iota
 	RAW24khz16bitMonoPCM
 	RAW48khz16bitMonoPCM
 	RAW8khz8bitMonoMulaw
@@ -91,7 +91,7 @@ var MapAudioFileExtensions = map[string]string{
 // 	"OGG24khz16bitMonoOpus":        OGG24khz16bitMonoOpus,
 // }
 
-func (a AudioOutput) String() string {
+func (a AudioType) String() string {
 	return []string{
 		"raw-16khz-16bit-mono-pcm",
 		"raw-24khz-16bit-mono-pcm",

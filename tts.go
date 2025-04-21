@@ -30,7 +30,7 @@ func (az *AzureCSTTS) GetVoicesMap() RegionVoiceMap {
 }
 
 // Synthesize directs to SynthesizeWithContext. A new context.Withtimeout is created with the timeout as defined by synthesizeActionTimeout
-func (az *AzureCSTTS) Synthesize(speechText string, voiceName string, audioOutput AudioOutput) ([]byte, error) {
+func (az *AzureCSTTS) Synthesize(speechText string, voiceName string, audioOutput AudioType) ([]byte, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), synthesizeActionTimeout)
 	defer cancel()
 	return az.SynthesizeWithContext(ctx, speechText, voiceName, audioOutput)
@@ -39,7 +39,7 @@ func (az *AzureCSTTS) Synthesize(speechText string, voiceName string, audioOutpu
 // SynthesizeWithContext returns a bytestream of the rendered text-to-speech in the target audio format. `speechText` is the string of
 // text in which a user wishes to Synthesize, `region` is the language/locale
 // and `audioOutput` captures the audio format.
-func (az *AzureCSTTS) SynthesizeWithContext(ctx context.Context, speechText string, voiceName string, audioOutput AudioOutput) ([]byte, error) {
+func (az *AzureCSTTS) SynthesizeWithContext(ctx context.Context, speechText string, voiceName string, audioOutput AudioType) ([]byte, error) {
 	if _, ok := az.regionVoiceMap[voiceName]; !ok {
 		return nil, fmt.Errorf("voice name %s is not found in the voice map", voiceName)
 	}
@@ -60,7 +60,7 @@ func (az *AzureCSTTS) SynthesizeWithContext(ctx context.Context, speechText stri
 func (az *AzureCSTTS) SynthesizeSsmlWithContext(
 	ctx context.Context,
 	elems xml.Token,
-	audioOutput AudioOutput,
+	audioOutput AudioType,
 ) ([]byte, error) {
 	doc := ssml.NewSpeak()
 	doc.Child = elems
@@ -78,7 +78,7 @@ func (az *AzureCSTTS) SynthesizeSsmlWithContext(
 func (az *AzureCSTTS) SynthesizeRawSsmlWithContext(
 	ctx context.Context,
 	ssml string,
-	audioOutput AudioOutput,
+	audioOutput AudioType,
 ) ([]byte, error) {
 	request, err := http.NewRequestWithContext(ctx, http.MethodPost, az.textToSpeechURL, strings.NewReader(ssml))
 	if err != nil {
