@@ -70,7 +70,7 @@ func (az *AzureCSSTT) RecognizeShortSimple(
 	language string,
 	opts ...Option,
 ) (*RecognizeSimpleResponse, error) {
-	if audioType != RIFF16khz16bitMonoPCM && audioType != OGG16khz16bitMonoOpus {
+	if audioType != RIFF16khz16bitMonoPCM && audioType != RAW16khz16bitMonoPCM && audioType != OGG16khz16bitMonoOpus {
 		return nil, fmt.Errorf("audio type %s is not supported", audioType)
 	}
 
