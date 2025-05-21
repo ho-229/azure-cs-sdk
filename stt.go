@@ -1,6 +1,7 @@
 package azure_cs_sdk
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -70,6 +71,22 @@ func (az *AzureCSSTT) RecognizeShortSimple(
 	language string,
 	opts ...Option,
 ) (*RecognizeSimpleResponse, error) {
+	return az.RecognizeShortSimpleWithContext(
+		context.Background(),
+		reader,
+		audioType,
+		language,
+		opts...,
+	)
+}
+
+func (az *AzureCSSTT) RecognizeShortSimpleWithContext(
+	ctx context.Context,
+	reader io.Reader,
+	audioType AudioType,
+	language string,
+	opts ...Option,
+) (*RecognizeSimpleResponse, error) {
 	if audioType != RIFF16khz16bitMonoPCM && audioType != RAW16khz16bitMonoPCM && audioType != OGG16khz16bitMonoOpus {
 		return nil, fmt.Errorf("audio type %s is not supported", audioType)
 	}
@@ -88,7 +105,7 @@ func (az *AzureCSSTT) RecognizeShortSimple(
 		params.Profanity,
 		url.QueryEscape(params.Cid),
 	)
-	req, err := http.NewRequest(http.MethodPost, az.speechToTextAPI+query, reader)
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, az.speechToTextAPI+query, reader)
 	if err != nil {
 		return nil, err
 	}
