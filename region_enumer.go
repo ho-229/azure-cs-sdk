@@ -8,11 +8,11 @@ import (
 	"strings"
 )
 
-const _RegionName = "AustraliaEastBrazilSouthCanadaCentralCentralUSEastAsiaEastUSEastUS2FranceCentralIndiaCentralJapanEastJapanWestKoreaCentralNorthCentralUSNorthEuropeSouthCentralUSSoutheastAsiaUKSouthWestEuropeWestUSWestUS2"
+const _RegionName = "SouthAfricaNorthEastAsiaSoutheastAsiaAustraliaEastCentralIndiaJapanEastJapanWestKoreaCentralCanadaCentralCanadaEastNorthEuropeWestEuropeFranceCentralGermanyWestCentralItalyNorthNorwayEastSwedenCentralSwitzerlandNorthSwitzerlandWestUKSouthUKWestUAENorthBrazilSouthQatarCentralCentralUSEastUSEastUS2NorthCentralUSSouthCentralUSWestCentralUSWestUSWestUS2WestUS3"
 
-var _RegionIndex = [...]uint8{0, 13, 24, 37, 46, 54, 60, 67, 80, 92, 101, 110, 122, 136, 147, 161, 174, 181, 191, 197, 204}
+var _RegionIndex = [...]uint16{0, 16, 24, 37, 50, 62, 71, 80, 92, 105, 115, 126, 136, 149, 167, 177, 187, 200, 216, 231, 238, 244, 252, 263, 275, 284, 290, 297, 311, 325, 338, 344, 351, 358}
 
-const _RegionLowerName = "australiaeastbrazilsouthcanadacentralcentraluseastasiaeastuseastus2francecentralindiacentraljapaneastjapanwestkoreacentralnorthcentralusnortheuropesouthcentralussoutheastasiauksouthwesteuropewestuswestus2"
+const _RegionLowerName = "southafricanortheastasiasoutheastasiaaustraliaeastcentralindiajapaneastjapanwestkoreacentralcanadacentralcanadaeastnortheuropewesteuropefrancecentralgermanywestcentralitalynorthnorwayeastswedencentralswitzerlandnorthswitzerlandwestuksouthukwestuaenorthbrazilsouthqatarcentralcentraluseastuseastus2northcentralussouthcentraluswestcentraluswestuswestus2westus3"
 
 func (i Region) String() string {
 	if i < 0 || i >= Region(len(_RegionIndex)-1) {
@@ -25,94 +25,146 @@ func (i Region) String() string {
 // Re-run the stringer command to generate them again.
 func _RegionNoOp() {
 	var x [1]struct{}
-	_ = x[RegionAustraliaEast-(0)]
-	_ = x[RegionBrazilSouth-(1)]
-	_ = x[RegionCanadaCentral-(2)]
-	_ = x[RegionCentralUS-(3)]
-	_ = x[RegionEastAsia-(4)]
-	_ = x[RegionEastUS-(5)]
-	_ = x[RegionEastUS2-(6)]
-	_ = x[RegionFranceCentral-(7)]
-	_ = x[RegionIndiaCentral-(8)]
-	_ = x[RegionJapanEast-(9)]
-	_ = x[RegionJapanWest-(10)]
-	_ = x[RegionKoreaCentral-(11)]
-	_ = x[RegionNorthCentralUS-(12)]
-	_ = x[RegionNorthEurope-(13)]
-	_ = x[RegionSouthCentralUS-(14)]
-	_ = x[RegionSoutheastAsia-(15)]
-	_ = x[RegionUKSouth-(16)]
-	_ = x[RegionWestEurope-(17)]
-	_ = x[RegionWestUS-(18)]
-	_ = x[RegionWestUS2-(19)]
+	_ = x[RegionSouthAfricaNorth-(0)]
+	_ = x[RegionEastAsia-(1)]
+	_ = x[RegionSoutheastAsia-(2)]
+	_ = x[RegionAustraliaEast-(3)]
+	_ = x[RegionCentralIndia-(4)]
+	_ = x[RegionJapanEast-(5)]
+	_ = x[RegionJapanWest-(6)]
+	_ = x[RegionKoreaCentral-(7)]
+	_ = x[RegionCanadaCentral-(8)]
+	_ = x[RegionCanadaEast-(9)]
+	_ = x[RegionNorthEurope-(10)]
+	_ = x[RegionWestEurope-(11)]
+	_ = x[RegionFranceCentral-(12)]
+	_ = x[RegionGermanyWestCentral-(13)]
+	_ = x[RegionItalyNorth-(14)]
+	_ = x[RegionNorwayEast-(15)]
+	_ = x[RegionSwedenCentral-(16)]
+	_ = x[RegionSwitzerlandNorth-(17)]
+	_ = x[RegionSwitzerlandWest-(18)]
+	_ = x[RegionUKSouth-(19)]
+	_ = x[RegionUKWest-(20)]
+	_ = x[RegionUAENorth-(21)]
+	_ = x[RegionBrazilSouth-(22)]
+	_ = x[RegionQatarCentral-(23)]
+	_ = x[RegionCentralUS-(24)]
+	_ = x[RegionEastUS-(25)]
+	_ = x[RegionEastUS2-(26)]
+	_ = x[RegionNorthCentralUS-(27)]
+	_ = x[RegionSouthCentralUS-(28)]
+	_ = x[RegionWestCentralUS-(29)]
+	_ = x[RegionWestUS-(30)]
+	_ = x[RegionWestUS2-(31)]
+	_ = x[RegionWestUS3-(32)]
 }
 
-var _RegionValues = []Region{RegionAustraliaEast, RegionBrazilSouth, RegionCanadaCentral, RegionCentralUS, RegionEastAsia, RegionEastUS, RegionEastUS2, RegionFranceCentral, RegionIndiaCentral, RegionJapanEast, RegionJapanWest, RegionKoreaCentral, RegionNorthCentralUS, RegionNorthEurope, RegionSouthCentralUS, RegionSoutheastAsia, RegionUKSouth, RegionWestEurope, RegionWestUS, RegionWestUS2}
+var _RegionValues = []Region{RegionSouthAfricaNorth, RegionEastAsia, RegionSoutheastAsia, RegionAustraliaEast, RegionCentralIndia, RegionJapanEast, RegionJapanWest, RegionKoreaCentral, RegionCanadaCentral, RegionCanadaEast, RegionNorthEurope, RegionWestEurope, RegionFranceCentral, RegionGermanyWestCentral, RegionItalyNorth, RegionNorwayEast, RegionSwedenCentral, RegionSwitzerlandNorth, RegionSwitzerlandWest, RegionUKSouth, RegionUKWest, RegionUAENorth, RegionBrazilSouth, RegionQatarCentral, RegionCentralUS, RegionEastUS, RegionEastUS2, RegionNorthCentralUS, RegionSouthCentralUS, RegionWestCentralUS, RegionWestUS, RegionWestUS2, RegionWestUS3}
 
 var _RegionNameToValueMap = map[string]Region{
-	_RegionName[0:13]:         RegionAustraliaEast,
-	_RegionLowerName[0:13]:    RegionAustraliaEast,
-	_RegionName[13:24]:        RegionBrazilSouth,
-	_RegionLowerName[13:24]:   RegionBrazilSouth,
-	_RegionName[24:37]:        RegionCanadaCentral,
-	_RegionLowerName[24:37]:   RegionCanadaCentral,
-	_RegionName[37:46]:        RegionCentralUS,
-	_RegionLowerName[37:46]:   RegionCentralUS,
-	_RegionName[46:54]:        RegionEastAsia,
-	_RegionLowerName[46:54]:   RegionEastAsia,
-	_RegionName[54:60]:        RegionEastUS,
-	_RegionLowerName[54:60]:   RegionEastUS,
-	_RegionName[60:67]:        RegionEastUS2,
-	_RegionLowerName[60:67]:   RegionEastUS2,
-	_RegionName[67:80]:        RegionFranceCentral,
-	_RegionLowerName[67:80]:   RegionFranceCentral,
-	_RegionName[80:92]:        RegionIndiaCentral,
-	_RegionLowerName[80:92]:   RegionIndiaCentral,
-	_RegionName[92:101]:       RegionJapanEast,
-	_RegionLowerName[92:101]:  RegionJapanEast,
-	_RegionName[101:110]:      RegionJapanWest,
-	_RegionLowerName[101:110]: RegionJapanWest,
-	_RegionName[110:122]:      RegionKoreaCentral,
-	_RegionLowerName[110:122]: RegionKoreaCentral,
-	_RegionName[122:136]:      RegionNorthCentralUS,
-	_RegionLowerName[122:136]: RegionNorthCentralUS,
-	_RegionName[136:147]:      RegionNorthEurope,
-	_RegionLowerName[136:147]: RegionNorthEurope,
-	_RegionName[147:161]:      RegionSouthCentralUS,
-	_RegionLowerName[147:161]: RegionSouthCentralUS,
-	_RegionName[161:174]:      RegionSoutheastAsia,
-	_RegionLowerName[161:174]: RegionSoutheastAsia,
-	_RegionName[174:181]:      RegionUKSouth,
-	_RegionLowerName[174:181]: RegionUKSouth,
-	_RegionName[181:191]:      RegionWestEurope,
-	_RegionLowerName[181:191]: RegionWestEurope,
-	_RegionName[191:197]:      RegionWestUS,
-	_RegionLowerName[191:197]: RegionWestUS,
-	_RegionName[197:204]:      RegionWestUS2,
-	_RegionLowerName[197:204]: RegionWestUS2,
+	_RegionName[0:16]:         RegionSouthAfricaNorth,
+	_RegionLowerName[0:16]:    RegionSouthAfricaNorth,
+	_RegionName[16:24]:        RegionEastAsia,
+	_RegionLowerName[16:24]:   RegionEastAsia,
+	_RegionName[24:37]:        RegionSoutheastAsia,
+	_RegionLowerName[24:37]:   RegionSoutheastAsia,
+	_RegionName[37:50]:        RegionAustraliaEast,
+	_RegionLowerName[37:50]:   RegionAustraliaEast,
+	_RegionName[50:62]:        RegionCentralIndia,
+	_RegionLowerName[50:62]:   RegionCentralIndia,
+	_RegionName[62:71]:        RegionJapanEast,
+	_RegionLowerName[62:71]:   RegionJapanEast,
+	_RegionName[71:80]:        RegionJapanWest,
+	_RegionLowerName[71:80]:   RegionJapanWest,
+	_RegionName[80:92]:        RegionKoreaCentral,
+	_RegionLowerName[80:92]:   RegionKoreaCentral,
+	_RegionName[92:105]:       RegionCanadaCentral,
+	_RegionLowerName[92:105]:  RegionCanadaCentral,
+	_RegionName[105:115]:      RegionCanadaEast,
+	_RegionLowerName[105:115]: RegionCanadaEast,
+	_RegionName[115:126]:      RegionNorthEurope,
+	_RegionLowerName[115:126]: RegionNorthEurope,
+	_RegionName[126:136]:      RegionWestEurope,
+	_RegionLowerName[126:136]: RegionWestEurope,
+	_RegionName[136:149]:      RegionFranceCentral,
+	_RegionLowerName[136:149]: RegionFranceCentral,
+	_RegionName[149:167]:      RegionGermanyWestCentral,
+	_RegionLowerName[149:167]: RegionGermanyWestCentral,
+	_RegionName[167:177]:      RegionItalyNorth,
+	_RegionLowerName[167:177]: RegionItalyNorth,
+	_RegionName[177:187]:      RegionNorwayEast,
+	_RegionLowerName[177:187]: RegionNorwayEast,
+	_RegionName[187:200]:      RegionSwedenCentral,
+	_RegionLowerName[187:200]: RegionSwedenCentral,
+	_RegionName[200:216]:      RegionSwitzerlandNorth,
+	_RegionLowerName[200:216]: RegionSwitzerlandNorth,
+	_RegionName[216:231]:      RegionSwitzerlandWest,
+	_RegionLowerName[216:231]: RegionSwitzerlandWest,
+	_RegionName[231:238]:      RegionUKSouth,
+	_RegionLowerName[231:238]: RegionUKSouth,
+	_RegionName[238:244]:      RegionUKWest,
+	_RegionLowerName[238:244]: RegionUKWest,
+	_RegionName[244:252]:      RegionUAENorth,
+	_RegionLowerName[244:252]: RegionUAENorth,
+	_RegionName[252:263]:      RegionBrazilSouth,
+	_RegionLowerName[252:263]: RegionBrazilSouth,
+	_RegionName[263:275]:      RegionQatarCentral,
+	_RegionLowerName[263:275]: RegionQatarCentral,
+	_RegionName[275:284]:      RegionCentralUS,
+	_RegionLowerName[275:284]: RegionCentralUS,
+	_RegionName[284:290]:      RegionEastUS,
+	_RegionLowerName[284:290]: RegionEastUS,
+	_RegionName[290:297]:      RegionEastUS2,
+	_RegionLowerName[290:297]: RegionEastUS2,
+	_RegionName[297:311]:      RegionNorthCentralUS,
+	_RegionLowerName[297:311]: RegionNorthCentralUS,
+	_RegionName[311:325]:      RegionSouthCentralUS,
+	_RegionLowerName[311:325]: RegionSouthCentralUS,
+	_RegionName[325:338]:      RegionWestCentralUS,
+	_RegionLowerName[325:338]: RegionWestCentralUS,
+	_RegionName[338:344]:      RegionWestUS,
+	_RegionLowerName[338:344]: RegionWestUS,
+	_RegionName[344:351]:      RegionWestUS2,
+	_RegionLowerName[344:351]: RegionWestUS2,
+	_RegionName[351:358]:      RegionWestUS3,
+	_RegionLowerName[351:358]: RegionWestUS3,
 }
 
 var _RegionNames = []string{
-	_RegionName[0:13],
-	_RegionName[13:24],
+	_RegionName[0:16],
+	_RegionName[16:24],
 	_RegionName[24:37],
-	_RegionName[37:46],
-	_RegionName[46:54],
-	_RegionName[54:60],
-	_RegionName[60:67],
-	_RegionName[67:80],
+	_RegionName[37:50],
+	_RegionName[50:62],
+	_RegionName[62:71],
+	_RegionName[71:80],
 	_RegionName[80:92],
-	_RegionName[92:101],
-	_RegionName[101:110],
-	_RegionName[110:122],
-	_RegionName[122:136],
-	_RegionName[136:147],
-	_RegionName[147:161],
-	_RegionName[161:174],
-	_RegionName[174:181],
-	_RegionName[181:191],
-	_RegionName[191:197],
-	_RegionName[197:204],
+	_RegionName[92:105],
+	_RegionName[105:115],
+	_RegionName[115:126],
+	_RegionName[126:136],
+	_RegionName[136:149],
+	_RegionName[149:167],
+	_RegionName[167:177],
+	_RegionName[177:187],
+	_RegionName[187:200],
+	_RegionName[200:216],
+	_RegionName[216:231],
+	_RegionName[231:238],
+	_RegionName[238:244],
+	_RegionName[244:252],
+	_RegionName[252:263],
+	_RegionName[263:275],
+	_RegionName[275:284],
+	_RegionName[284:290],
+	_RegionName[290:297],
+	_RegionName[297:311],
+	_RegionName[311:325],
+	_RegionName[325:338],
+	_RegionName[338:344],
+	_RegionName[344:351],
+	_RegionName[351:358],
 }
 
 // RegionString retrieves an enum value from the enum constants string name.

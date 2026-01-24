@@ -134,32 +134,53 @@ const (
 	GenderNeutral               // Neutral
 )
 
-// Region references the locations of the availability of standard voices.
-// See https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/regions#standard-voices
+// Region references the locations of the availability of Speech service.
+// See https://learn.microsoft.com/en-us/azure/ai-services/speech-service/regions?tabs=geographies#regions
 //
 //go:generate enumer -type=Region -linecomment -json -trimprefix Region
 type Region int
 
 const (
-	// Azure regions and their endpoints that support the Text To Speech service.
-	RegionAustraliaEast Region = iota
-	RegionBrazilSouth
-	RegionCanadaCentral
-	RegionCentralUS
+	// Azure regions and their endpoints that support the Speech service.
+	// Africa
+	RegionSouthAfricaNorth Region = iota
+	// Asia Pacific
 	RegionEastAsia
-	RegionEastUS
-	RegionEastUS2
-	RegionFranceCentral
-	RegionIndiaCentral
+	RegionSoutheastAsia
+	RegionAustraliaEast
+	RegionCentralIndia
 	RegionJapanEast
 	RegionJapanWest
 	RegionKoreaCentral
-	RegionNorthCentralUS
+	// Canada
+	RegionCanadaCentral
+	RegionCanadaEast
+	// Europe
 	RegionNorthEurope
-	RegionSouthCentralUS
-	RegionSoutheastAsia
-	RegionUKSouth
 	RegionWestEurope
+	RegionFranceCentral
+	RegionGermanyWestCentral
+	RegionItalyNorth
+	RegionNorwayEast
+	RegionSwedenCentral
+	RegionSwitzerlandNorth
+	RegionSwitzerlandWest
+	RegionUKSouth
+	RegionUKWest
+	// Middle East
+	RegionUAENorth
+	// South America
+	RegionBrazilSouth
+	// Qatar
+	RegionQatarCentral
+	// US
+	RegionCentralUS
+	RegionEastUS
+	RegionEastUS2
+	RegionNorthCentralUS
+	RegionSouthCentralUS
+	RegionWestCentralUS
 	RegionWestUS
 	RegionWestUS2
+	RegionWestUS3
 )
