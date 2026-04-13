@@ -10,8 +10,9 @@ import (
 )
 
 type AzureCSSTT struct {
-	speechToTextAPI string
-	client          *AzureCS
+	speechToTextAPI   string
+	speechToTextWSAPI string
+	client            *AzureCS
 }
 
 type RecognitionStatus string
@@ -27,8 +28,57 @@ const (
 type RecognizeSimpleResponse struct {
 	RecognitionStatus RecognitionStatus
 	DisplayText       string
+	Confidence        float64
 	Offset            uint64
 	Duration          uint64
+	PrimaryLanguage   *PrimaryLanguage
+	NBest             []RecognizeAlternative
+}
+
+type PrimaryLanguage struct {
+	Language   string
+	Confidence string
+}
+
+func (r *RecognizeSimpleResponse) normalize() {}
+
+type recognizeDetailedResponse struct {
+	RecognitionStatus RecognitionStatus
+	Offset            uint64
+	Duration          uint64
+	NBest             []RecognizeAlternative
+	PrimaryLanguage   *PrimaryLanguage
+}
+
+type RecognizeAlternative struct {
+	Confidence float64
+	Display    string
+}
+
+func (r *recognizeDetailedResponse) normalize() {}
+
+func (r *recognizeDetailedResponse) toSimpleResponse() *RecognizeSimpleResponse {
+	maxIndex := -1
+	maxConfidence := .0
+	for i := range r.NBest {
+		if r.NBest[i].Confidence > maxConfidence {
+			maxConfidence = r.NBest[i].Confidence
+			maxIndex = i
+		}
+	}
+
+	resp := &RecognizeSimpleResponse{
+		RecognitionStatus: r.RecognitionStatus,
+		Offset:            r.Offset,
+		Duration:          r.Duration,
+		PrimaryLanguage:   r.PrimaryLanguage,
+		NBest:             r.NBest,
+	}
+	if maxIndex != -1 {
+		resp.DisplayText = r.NBest[maxIndex].Display
+		resp.Confidence = r.NBest[maxIndex].Confidence
+	}
+	return resp
 }
 
 type Option func(*options)
@@ -87,6 +137,22 @@ func (az *AzureCSSTT) RecognizeShortSimpleWithContext(
 	language string,
 	opts ...Option,
 ) (*RecognizeSimpleResponse, error) {
+	req, err := az.newRecognizeShortRequest(ctx, reader, audioType, language, "simple", opts...)
+	if err != nil {
+		return nil, err
+	}
+
+	return doAndUnmarshal[RecognizeSimpleResponse](az.client.httpClient, req)
+}
+
+func (az *AzureCSSTT) newRecognizeShortRequest(
+	ctx context.Context,
+	reader io.Reader,
+	audioType AudioType,
+	language string,
+	format string,
+	opts ...Option,
+) (*http.Request, error) {
 	if audioType != RIFF16khz16bitMonoPCM && audioType != RAW16khz16bitMonoPCM && audioType != OGG16khz16bitMonoOpus {
 		return nil, fmt.Errorf("audio type %s is not supported", audioType)
 	}
@@ -100,8 +166,9 @@ func (az *AzureCSSTT) RecognizeShortSimpleWithContext(
 		opt(&params)
 	}
 
-	query := fmt.Sprintf("?language=%s&format=simple&profanity=%s&cid=%s",
+	query := fmt.Sprintf("?language=%s&format=%s&profanity=%s&cid=%s",
 		url.QueryEscape(language),
+		url.QueryEscape(format),
 		params.Profanity,
 		url.QueryEscape(params.Cid),
 	)
@@ -119,8 +186,7 @@ func (az *AzureCSSTT) RecognizeShortSimpleWithContext(
 	case OGG16khz16bitMonoOpus:
 		req.Header.Set("Content-Type", "audio/ogg; codecs=\"opus\"")
 	}
-
-	return doAndUnmarshal[RecognizeSimpleResponse](az.client.httpClient, req)
+	return req, nil
 }
 
 func doAndUnmarshal[T any](client *http.Client, req *http.Request) (*T, error) {
@@ -138,6 +204,9 @@ func doAndUnmarshal[T any](client *http.Client, req *http.Request) (*T, error) {
 	err = json.NewDecoder(resp.Body).Decode(v)
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode response: %w", err)
+	}
+	if normalizer, ok := any(v).(interface{ normalize() }); ok {
+		normalizer.normalize()
 	}
 	return v, nil
 }

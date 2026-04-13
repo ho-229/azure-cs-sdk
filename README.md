@@ -23,6 +23,7 @@ A Cognitive Services (kind=Speech Services) API key is required to access the UR
 The Speech to Text (STT) APIs allow you to convert spoken audio into text. These APIs support various audio formats and languages, enabling developers to integrate speech recognition capabilities into their applications. Key features include:
 
 - **Short Audio Recognition**: Designed for quick transcription of short audio files.
+- **Streaming Results**: The websocket recognizer can return interim hypotheses and the final recognition result as a stream.
 - **Language Support**: Recognizes multiple languages and dialects. Refer to the [language support documentation](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=stt) for a full list.
 - **Customizable Models**: Enhance recognition accuracy by using custom models tailored to specific vocabularies or scenarios.
 
@@ -41,6 +42,39 @@ func main() {
 	fmt.Printf("Status: %s Recognized text: %s\n", resp.RecognitionStatus, resp.DisplayText)
 }
 ```
+
+For audio with multiple possible languages, pass candidate locales and consume the stream returned by `Recognize`.
+
+```golang
+sampleFile, _ := os.Open("audio.wav")
+defer sampleFile.Close()
+
+events, _ := stt.Recognize(
+    sampleFile,
+    azure.RIFF16khz16bitMonoPCM,
+    []string{"en-US", "zh-CN", "ja-JP"},
+)
+
+for event := range events {
+    if event.Err != nil {
+        panic(event.Err)
+    }
+    if event.Result == nil {
+        continue
+    }
+    language := ""
+    if event.Result.PrimaryLanguage != nil {
+        language = event.Result.PrimaryLanguage.Language
+    }
+    fmt.Printf("%s %s %s\n", event.Type, language, event.Result.DisplayText)
+
+    if event.Type == azure.RecognizeEventFinal {
+        fmt.Printf("nbest=%+v\n", event.Result.NBest)
+    }
+}
+```
+
+The current websocket implementation supports `RIFF16khz16bitMonoPCM` input.
 
 ### Text to Speech
 

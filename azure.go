@@ -12,6 +12,7 @@ import (
 // The following are V1 endpoints for Cognitive Services endpoints
 const textToSpeechAPI = "https://%s.tts.speech.microsoft.com/cognitiveservices"
 const speechToTextAPI = "https://%s.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1"
+const speechToTextWSAPI = "wss://%s.stt.speech.microsoft.com/stt/speech/universal/v2"
 const tokenRefreshAPI = "https://%s.api.cognitive.microsoft.com/sts/v1.0/issueToken"
 
 // tokenRefreshTimeout is the amount of time the http client will wait during the token refresh action.
@@ -77,8 +78,9 @@ func (az *AzureCS) NewTTS() (*AzureCSTTS, error) {
 
 func (az *AzureCS) NewSTT() (*AzureCSSTT, error) {
 	return &AzureCSSTT{
-		speechToTextAPI: fmt.Sprintf(speechToTextAPI, az.region),
-		client:          az,
+		speechToTextAPI:   fmt.Sprintf(speechToTextAPI, az.region),
+		speechToTextWSAPI: fmt.Sprintf(speechToTextWSAPI, az.region),
+		client:            az,
 	}, nil
 }
 
